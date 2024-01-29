@@ -6,7 +6,7 @@ const Page2Screen = ({ navigation }) => {
     <View>
         <Text>
 
-        <h1>Page 2</h1>
+        <h1>Win Screen</h1>
         </Text>
       <Button
         title="You won"

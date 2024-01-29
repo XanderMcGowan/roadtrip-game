@@ -1,22 +1,30 @@
 import React, {useState} from 'react';
-import { View, Button, Text } from 'react-native';
+import { View, Button, Text, CheckBox } from 'react-native';
 
 
 const Page1Screen = ({ navigation }) => {
-  const [dataGrandchild, setDataFromGrandchild] = useState('');
 
+  const [isChecked, setChecked] = useState(false);
+
+  const handleCheckBoxChange = () => {
+    setChecked(!isChecked);
+    if (!isChecked) {
+      navigation.navigate('Page2');
+    }
+  };
 
 
   return (
     <View>
         <Text>
 
-        <h1>Page 1</h1>
+        <h1>Game Screen</h1>
         </Text>
-      <Button
+        <CheckBox value={isChecked} onValueChange={handleCheckBoxChange} />
+      {/* <Button
         title="Go to Page 2"
         onPress={() => navigation.navigate('Page2')}
-      />
+      /> */}
     </View>
   );
 };
