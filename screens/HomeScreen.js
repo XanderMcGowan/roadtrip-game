@@ -6,12 +6,16 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View>
       <Button
-        title="Go to Page 1"
+        title="Play"
         onPress={() => navigation.navigate('Page1')}
       />
             <Button
         title="Go to Settings"
         onPress={() => navigation.navigate('Settings')}
+      />
+            <Button
+        title="How to Play"
+        onPress={() => navigation.navigate('Page3')}
       />
     </View>
   );

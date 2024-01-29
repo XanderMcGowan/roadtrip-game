@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Button, Text } from 'react-native';
 
+
 const Page1Screen = ({ navigation }) => {
+  const [dataGrandchild, setDataFromGrandchild] = useState('');
+
+
+
   return (
     <View>
         <Text>

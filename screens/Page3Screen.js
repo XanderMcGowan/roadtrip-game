@@ -7,7 +7,7 @@ const Page3Screen = ({ navigation }) => {
         <Text>
 
 
-        <h1>Page 3</h1>
+        <h1>How to Play</h1>
         </Text>
       <Button
         title="Go to Home Page"

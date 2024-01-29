@@ -1,5 +1,6 @@
 // App.js
 import React from 'react';
+import { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
@@ -9,6 +10,7 @@ import Page3Screen from './screens/Page3Screen';
 import SettingScreen from './screens/SettingsScreen';
 
 const Stack = createStackNavigator();
+
 
 const App = () => {
   return (

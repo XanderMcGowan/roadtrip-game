@@ -9,8 +9,8 @@ const Page2Screen = ({ navigation }) => {
         <h1>Page 2</h1>
         </Text>
       <Button
-        title="Go to Page 3"
-        onPress={() => navigation.navigate('Page3')}
+        title="You won"
+        onPress={() => navigation.navigate('Home')}
       />
     </View>
   );
