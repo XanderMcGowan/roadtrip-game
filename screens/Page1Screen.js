@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
 import { View, Button, Text, CheckBox } from 'react-native';
 import SearchItems from "../searchItems.json"
-import SettingScreen from './SettingsScreen';
 
 
-const Page1Screen = ({ navigation }) => {
+const Page1Screen = ({ navigation, route }) => {
+  let selectedDiff = route.params
+  console.log(typeof selectedDiff.selectedDiff)
   const [checkboxes, setCheckboxes] = useState(generateCheckboxes());
 
   function generateCheckboxes() {
-    const numberOfCheckboxes = Math.floor(Math.random() * 10) + 1;
+    const numberOfCheckboxes = Number(selectedDiff.selectedDiff);
     console.log(numberOfCheckboxes)
     return new Array(numberOfCheckboxes).fill(false);
   }
@@ -44,6 +45,7 @@ const Page1Screen = ({ navigation }) => {
 
     </View>
   );
+  
 };
 
 export default Page1Screen;

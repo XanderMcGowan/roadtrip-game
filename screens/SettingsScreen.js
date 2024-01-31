@@ -2,34 +2,27 @@
 import React, { useState } from 'react';
 import { View, Button, Picker, StyleSheet, Text } from 'react-native';
 
-
-const SettingScreen = ({ navigation } ) => {
-  const [selectedDiff, setSelectedDiff] = useState("2");
+const DropdownMenu = () => {
   const [selectedVersus, setSelectedVersus] = useState("solo");
+  const [selectedDiff, setSelectedDiff] = useState("2");
 
-  const handlePageNav = () => {
-    if(selectedVersus == "versus"){
-      navigation.navigate('Versus')
-    } else {
-      navigation.navigate('Page1')
-    }
-  }
 
-  const DropdownMenu = () => {
-    return <View style={styles.container}>
-          <Text>Play Type</Text>
+  return {
+    selectedVersus, selectedDiff,
+    render:(<View style={styles.container}>
+      <Text>Play Type</Text>
         <Picker
           selectedVersus={selectedVersus}
           onValueChange={(itemValue, itemIndex) => setSelectedVersus(itemValue)}
           style={styles.picker}
-        >
+          >
           <Picker.Item label="Solo" value="solo" />
           <Picker.Item label="Versus" value="versus" />
         </Picker>
         <Text>Difficulty</Text>
         <Picker
           selectedDiff={selectedDiff}
-          onValueChange={(itemValue, itemIndex) => setSelectedDiff(itemValue)}
+          onValueChange={(itemValue) => setSelectedDiff(itemValue)}
           style={styles.picker}
         >
           <Picker.Item label="Easy" value="2" />
@@ -37,13 +30,30 @@ const SettingScreen = ({ navigation } ) => {
           <Picker.Item label="Hard" value="6" />
         </Picker>
       </View>
-  };
+    )
+  }
+
+};
+
+const SettingScreen = ({ navigation } ) => {
+  
+  const {render, selectedVersus, selectedDiff} = DropdownMenu()
+
+
+  const handlePageNav = () => {
+    if(selectedVersus == "versus"){
+      navigation.navigate('Versus', {selectedDiff})
+    } else {
+      navigation.navigate('Page1', {selectedDiff})
+    }
+  }
+  
 
 
 
   return (
     <View>
-      <DropdownMenu></DropdownMenu>
+      {render}
       <Button
         title="Play"
         onPress={() => handlePageNav()}

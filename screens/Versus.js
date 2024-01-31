@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { View, Button, Text, CheckBox } from "react-native";
 import SearchItems from "../searchItems.json";
 
-const VersusScreen = ({ navigation }) => {
+const VersusScreen = ({ navigation, route }) => {
+  let selectedDiff = route.params
   const [checkboxes, setCheckboxes] = useState(generateCheckboxes());
   const [checkboxes2, setCheckboxes2] = useState(generateCheckboxes());
 
   
   function generateCheckboxes() {
-    const numberOfCheckboxes = 2;
+    const numberOfCheckboxes = Number(selectedDiff.selectedDiff);
     return new Array(numberOfCheckboxes).fill(false);
   }
 
