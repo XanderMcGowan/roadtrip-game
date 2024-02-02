@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { View, Button, Picker, Text } from 'react-native';
+import { View, Button, Text } from 'react-native';
+import {Picker} from '@react-native-picker/picker'
 
 import globalStyles from '../style/globalStyles';
 

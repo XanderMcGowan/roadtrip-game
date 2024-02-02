@@ -7,7 +7,7 @@ const HowToPlayScreen = ({ navigation }) => {
         <Text>
 
 
-        <h1>How to Play</h1>
+        How to Play
         </Text>
       <Button
         title="Go to Home Page"

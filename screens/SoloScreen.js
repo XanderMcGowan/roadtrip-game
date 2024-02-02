@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { View, Button, Text} from 'react-native';
 import Checkbox from 'expo-checkbox';
 import SearchItems from "../searchItems.json"
+import globalStyles from '../style/globalStyles';
 
 
 const SoloScreen = ({ navigation, route }) => {
@@ -30,7 +31,7 @@ const SoloScreen = ({ navigation, route }) => {
 
   return (
     <View>
-        <Text><h1>Game Screen</h1></Text>
+        <Text style={globalStyles.text}>Game Screen</Text>
 
             {checkboxes.map((isChecked, index) => (
               <View key={index}>

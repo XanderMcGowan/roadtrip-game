@@ -6,7 +6,7 @@ const WinScreen = ({ navigation }) => {
     <View>
         <Text>
 
-        <h1>Win Screen</h1>
+        Win Screen
         </Text>
       <Button
         title="You won"

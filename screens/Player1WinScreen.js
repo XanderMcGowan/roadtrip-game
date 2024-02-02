@@ -6,7 +6,7 @@ const Player1WinScreen = ({ navigation }) => {
     <View>
         <Text>
 
-        <h1>Player 1 Wins !!!</h1>
+        Player 1 Wins !!!
         </Text>
       <Button
         title="Home"
