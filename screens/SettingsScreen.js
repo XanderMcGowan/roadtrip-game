@@ -1,6 +1,8 @@
 
 import React, { useState } from 'react';
-import { View, Button, Picker, StyleSheet, Text } from 'react-native';
+import { View, Button, Picker, Text } from 'react-native';
+
+import globalStyles from '../style/globalStyles';
 
 const DropdownMenu = () => {
   const [selectedVersus, setSelectedVersus] = useState("solo");
@@ -9,12 +11,12 @@ const DropdownMenu = () => {
 
   return {
     selectedVersus, selectedDiff,
-    render:(<View style={styles.container}>
+    render:(<View style={globalStyles.container}>
       <Text>Play Type</Text>
         <Picker
           selectedVersus={selectedVersus}
           onValueChange={(itemValue, itemIndex) => setSelectedVersus(itemValue)}
-          style={styles.picker}
+          style={globalStyles.picker}
           >
           <Picker.Item label="Solo" value="solo" />
           <Picker.Item label="Versus" value="versus" />
@@ -23,7 +25,7 @@ const DropdownMenu = () => {
         <Picker
           selectedDiff={selectedDiff}
           onValueChange={(itemValue) => setSelectedDiff(itemValue)}
-          style={styles.picker}
+          style={globalStyles.picker}
         >
           <Picker.Item label="Easy" value="2" />
           <Picker.Item label="Medium" value="4" />
@@ -44,7 +46,7 @@ const SettingScreen = ({ navigation } ) => {
     if(selectedVersus == "versus"){
       navigation.navigate('Versus', {selectedDiff})
     } else {
-      navigation.navigate('Page1', {selectedDiff})
+      navigation.navigate('Solo', {selectedDiff})
     }
   }
   
@@ -60,25 +62,12 @@ const SettingScreen = ({ navigation } ) => {
       />
       <Button
         title="Go to Home"
-        onPress={() => handlePageNav()}
+        onPress={() => navigation.navigate('Home')}
       />
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  picker: {
-    width: 200,
-    height: 50,
-    borderColor: "black",
-    borderWidth: 1,
-  },
-});
 
 export default SettingScreen
 ;

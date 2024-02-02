@@ -1,19 +1,20 @@
 import React from 'react';
 import { View, Button, Text } from 'react-native';
 
-const Page2Screen = ({ navigation }) => {
+const HowToPlayScreen = ({ navigation }) => {
   return (
     <View>
         <Text>
 
-        <h1>Win Screen</h1>
+
+        <h1>How to Play</h1>
         </Text>
       <Button
-        title="You won"
+        title="Go to Home Page"
         onPress={() => navigation.navigate('Home')}
       />
     </View>
   );
 };
 
-export default Page2Screen;
+export default HowToPlayScreen;

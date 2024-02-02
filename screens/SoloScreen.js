@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import { View, Button, Text, CheckBox } from 'react-native';
+import { View, Button, Text} from 'react-native';
+import Checkbox from 'expo-checkbox';
 import SearchItems from "../searchItems.json"
 
 
-const Page1Screen = ({ navigation, route }) => {
+const SoloScreen = ({ navigation, route }) => {
   let selectedDiff = route.params
   console.log(typeof selectedDiff.selectedDiff)
   const [checkboxes, setCheckboxes] = useState(generateCheckboxes());
@@ -22,7 +23,7 @@ const Page1Screen = ({ navigation, route }) => {
     // Check if all checkboxes are checked
     if (updatedCheckboxes.every((checkbox) => checkbox)) {
       // Navigate to Page2 if all checkboxes are checked
-      navigation.navigate('Page2');
+      navigation.navigate('Win');
     }
   };
 
@@ -31,10 +32,9 @@ const Page1Screen = ({ navigation, route }) => {
     <View>
         <Text><h1>Game Screen</h1></Text>
 
-
             {checkboxes.map((isChecked, index) => (
               <View key={index}>
-              <CheckBox
+              <Checkbox
             value={isChecked}
             onValueChange={() => handleCheckboxToggle(index)}
           />
@@ -48,4 +48,4 @@ const Page1Screen = ({ navigation, route }) => {
   
 };
 
-export default Page1Screen;
+export default SoloScreen;

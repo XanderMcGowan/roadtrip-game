@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, Button, Text, CheckBox } from "react-native";
+import { View, Button, Text} from "react-native";
+import Checkbox from 'expo-checkbox';
 import SearchItems from "../searchItems.json";
 
 const VersusScreen = ({ navigation, route }) => {
@@ -43,9 +44,7 @@ const VersusScreen = ({ navigation, route }) => {
       </Text>
       {checkboxes.map((isChecked, index) => (
         <View key={index}>
-          <Text>
-          </Text>
-          <CheckBox
+          <Checkbox
             value={isChecked}
             onValueChange={() => handleCheckboxToggle(index)}
           />
@@ -56,9 +55,7 @@ const VersusScreen = ({ navigation, route }) => {
 <h1> Player 2</h1>
       {checkboxes2.map((isChecked, index) => (
         <View key={index}>
-          <Text>
-          </Text>
-          <CheckBox
+          <Checkbox
             value={isChecked}
             onValueChange={() => handleCheckboxToggle2(index)}
           />
