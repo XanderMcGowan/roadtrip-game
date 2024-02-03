@@ -15,7 +15,7 @@ const WinScreen = ({ navigation }) => {
   };
   
   return (
-    <View>
+    <View style={globalStyles.container}>
       <Text style={globalStyles.text}>Win Screen</Text>
       <Pressable
         style={[globalStyles.button, isPressed && globalStyles.buttonPressed]}

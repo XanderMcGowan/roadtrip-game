@@ -15,7 +15,7 @@ const Player2WinScreen = ({ navigation }) => {
       setIsPressed(false);
   };
   return (
-    <View>
+    <View style={globalStyles.container}>
         <Text style={globalStyles.text}>
 
         Player 2 Wins !!!

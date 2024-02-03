@@ -11,6 +11,11 @@ StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+  },
   button: {
 
     alignSelf: 'center',
@@ -62,6 +67,7 @@ StyleSheet.create({
     textAlign:'center',
     fontFamily: 'Caveat_400Regular',
     fontSize: 24,
+    marginBottom:'1.5%+'
   },
   text: {
     fontFamily: 'Caveat_400Regular',

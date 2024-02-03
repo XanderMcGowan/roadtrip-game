@@ -1,11 +1,11 @@
 // HomeScreen.js
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   Pressable,
-  StyleSheet,
-  ImageBackground,
+  SafeAreaView,
   Text,
+  ImageBackground
 } from "react-native";
 import { useFonts, Caveat_400Regular } from "@expo-google-fonts/caveat";
 import globalStyles from "../style/globalStyles";
@@ -47,10 +47,14 @@ const HomeScreen = ({ navigation }) => {
 
   let selectedDiff = "4";
   return (
-    <View style={globalStyles.container}>
+    <SafeAreaView style={globalStyles.container}>
+
 
       <Text style={[globalStyles.text, {margin: 25, fontSize: 48}]}>Road Trip Game</Text>
+
+
       <View style={[globalStyles.container, {justifyContent:"flex-end", alignItems:"center"}]}>
+
         <Pressable
           style={[
             globalStyles.button,
@@ -91,8 +95,9 @@ const HomeScreen = ({ navigation }) => {
           <Text style={globalStyles.buttonText}>How to Play</Text>
         </Pressable>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
+
 
 export default HomeScreen;

@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { View, Pressable, Text } from 'react-native';
+import { View, Pressable, Text, SafeAreaView } from 'react-native';
 import {Picker} from '@react-native-picker/picker'
 
 import globalStyles from '../style/globalStyles';
@@ -13,9 +13,10 @@ const DropdownMenu = () => {
 
   return {
     selectedVersus, selectedDiff,
-    render:(<View style={globalStyles.container}>
+    render:(
+    <SafeAreaView style={globalStyles.container}>
       <Text
-              style={globalStyles.text}
+              style={[globalStyles.text, {marginTop:'10%'}]}
       >Play Type</Text>
         <Picker
           selectedVersus={selectedVersus}
@@ -40,7 +41,7 @@ const DropdownMenu = () => {
           <Picker.Item label="Medium" value="4" />
           <Picker.Item label="Hard" value="6" />
         </Picker>
-      </View>
+      </SafeAreaView>
     )
   }
 
@@ -83,7 +84,7 @@ const SettingScreen = ({ navigation } ) => {
 
 
   return (
-    <View>
+    <SafeAreaView style={globalStyles.container}>
       {render}
       <Pressable
         style={[globalStyles.button, isPressed1 && globalStyles.buttonPressed]}
@@ -109,7 +110,7 @@ const SettingScreen = ({ navigation } ) => {
           Home
         </Text>
       </Pressable>
-    </View>
+    </SafeAreaView>
   );
 };
 

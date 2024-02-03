@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Button, Text} from "react-native";
 import Checkbox from 'expo-checkbox';
 import SearchItems from "../searchItems.json";
+import globalStyles from "../style/globalStyles";
 
 const VersusScreen = ({ navigation, route }) => {
   let selectedDiff = route.params
@@ -37,33 +38,45 @@ const VersusScreen = ({ navigation, route }) => {
   };
 
   return (
-    <View>
-      <Text>
+    <View style={globalStyles.container}>
+      <Text style={globalStyles.text}>
          Versus Game Screen
       </Text>
-      <Text>
+          <View style={globalStyles.container}>
+      <Text style={globalStyles.text}>
         Player 1
         </Text>
       {checkboxes.map((isChecked, index) => (
-        <View key={index}>
-          <Checkbox
+        <View 
+        style={globalStyles.checkboxCon}
+        key={index}>
+          <Checkbox 
+            style={globalStyles.checkbox}
             value={isChecked}
             onValueChange={() => handleCheckboxToggle(index)}
-          />
-          <Text>{SearchItems[index]}</Text>
+            />
+          <Text style={globalStyles.text}>{SearchItems[index]}</Text>
         </View>
       ))}
 
-<h1> Player 2</h1>
+<Text style={globalStyles.text}>
+        Player 2
+        </Text>
       {checkboxes2.map((isChecked, index) => (
-        <View key={index}>
+        <View 
+        style={globalStyles.checkboxCon}
+
+        key={index}
+        >
           <Checkbox
+                      style={globalStyles.checkbox}
             value={isChecked}
             onValueChange={() => handleCheckboxToggle2(index)}
-          />
-          <Text>{SearchItems[index]}</Text>
+            />
+          <Text style={globalStyles.text}>{SearchItems[index]}</Text>
         </View>
       ))}
+      </View>
     </View>
   );
 };
