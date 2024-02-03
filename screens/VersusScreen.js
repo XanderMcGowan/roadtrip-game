@@ -39,9 +39,11 @@ const VersusScreen = ({ navigation, route }) => {
   return (
     <View>
       <Text>
-        <h1> Versus Game Screen</h1>
-      <h1> Player 1</h1>
+         Versus Game Screen
       </Text>
+      <Text>
+        Player 1
+        </Text>
       {checkboxes.map((isChecked, index) => (
         <View key={index}>
           <Checkbox

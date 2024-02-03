@@ -39,7 +39,7 @@ const SoloScreen = ({ navigation, route }) => {
             value={isChecked}
             onValueChange={() => handleCheckboxToggle(index)}
           />
-          <Text>{SearchItems[index]}</Text>
+          <Text style={globalStyles.text}>{SearchItems[index]}</Text>
         </View>
       ))}
 
