@@ -48,8 +48,9 @@ const HomeScreen = ({ navigation }) => {
   let selectedDiff = "4";
   return (
     <View style={globalStyles.container}>
-      <Text style={globalStyles.text}>Road Trip Game</Text>
-      <View>
+
+      <Text style={[globalStyles.text, {margin: 25, fontSize: 48}]}>Road Trip Game</Text>
+      <View style={[globalStyles.container, {justifyContent:"flex-end", alignItems:"center"}]}>
         <Pressable
           style={[
             globalStyles.button,
@@ -59,7 +60,7 @@ const HomeScreen = ({ navigation }) => {
           onPressIn={() => handlePressIn(1)}
           onPressOut={() => handlePressOut(1)}
           activeOpacity={0.7}
-        >
+          >
           <Text style={globalStyles.buttonText}>Play</Text>
         </Pressable>
 
@@ -72,7 +73,7 @@ const HomeScreen = ({ navigation }) => {
           onPressIn={()=>handlePressIn(2)}
           onPressOut={() => handlePressOut(2)}
           activeOpacity={0.7}
-        >
+          >
           <Text style={globalStyles.buttonText}>Settings</Text>
         </Pressable>
 
@@ -80,12 +81,13 @@ const HomeScreen = ({ navigation }) => {
           style={[
             globalStyles.button,
             isPressed3 && globalStyles.buttonPressed,
+            {marginBottom:'3%'}
           ]}
           onPress={() => navigation.navigate("HowToPlay")}
           onPressIn={handlePressIn}
-                    onPressOut={() => handlePressOut(3)}
+          onPressOut={() => handlePressOut(3)}
           activeOpacity={0.7}
-        >
+          >
           <Text style={globalStyles.buttonText}>How to Play</Text>
         </Pressable>
       </View>

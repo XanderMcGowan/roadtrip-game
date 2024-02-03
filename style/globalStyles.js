@@ -5,10 +5,14 @@ const globalStyles =
 StyleSheet.create({
   container: {
     flex: 1,
+    width: '100%',
+    borderWidth: 2,
+    borderColor: 'red',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   button: {
+
     alignSelf: 'center',
     backgroundColor: '#fff',
     borderRadius: 1.75,
@@ -22,21 +26,42 @@ StyleSheet.create({
     lineHeight: 23,
     padding: 12,
     // transition: 'all 15ms',
-    marginBottom: '10%',
+    marginBottom: '1%',
   },
   buttonPressed: {
     backgroundColor: "#D1D3C4", // Change the color when pressed
   },
   buttonText: {
+    paddingTop: "15%",
+    textAlign:'center',
     fontFamily: 'Caveat_400Regular',
     color: "black",
-    fontSize: 16,
+    fontSize: 24,
+  },
+  checkbox: {
+    height: '25%',
+    width: '25%'
+  },
+  checkboxCon: {
+    flex: 1,
+    flexDirection:"row",
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: 'red',
+    width:'60%',
+    marginBottom: "1%"
+
+
   },
   picker: {
     width: 200,
     height: 50,
     borderColor: "black",
     borderWidth: 1,
+    borderRadius: 1.75,
+    textAlign:'center',
+    fontFamily: 'Caveat_400Regular',
+    fontSize: 24,
   },
   text: {
     fontFamily: 'Caveat_400Regular',

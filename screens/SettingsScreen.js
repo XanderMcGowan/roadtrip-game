@@ -14,16 +14,23 @@ const DropdownMenu = () => {
   return {
     selectedVersus, selectedDiff,
     render:(<View style={globalStyles.container}>
-      <Text>Play Type</Text>
+      <Text
+              style={globalStyles.text}
+      >Play Type</Text>
         <Picker
           selectedVersus={selectedVersus}
           onValueChange={(itemValue, itemIndex) => setSelectedVersus(itemValue)}
           style={globalStyles.picker}
           >
-          <Picker.Item label="Solo" value="solo" />
+          <Picker.Item 
+          
+          label="Solo" 
+          value="solo" />
           <Picker.Item label="Versus" value="versus" />
         </Picker>
-        <Text>Difficulty</Text>
+        <Text
+        style={globalStyles.text}
+        >Difficulty</Text>
         <Picker
           selectedDiff={selectedDiff}
           onValueChange={(itemValue) => setSelectedDiff(itemValue)}

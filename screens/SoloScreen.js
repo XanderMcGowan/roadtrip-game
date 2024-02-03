@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Button, Text} from 'react-native';
+import { View, Text} from 'react-native';
 import Checkbox from 'expo-checkbox';
 import SearchItems from "../searchItems.json"
 import globalStyles from '../style/globalStyles';
@@ -30,12 +30,15 @@ const SoloScreen = ({ navigation, route }) => {
 
 
   return (
-    <View>
-        <Text style={globalStyles.text}>Game Screen</Text>
+    <View style={globalStyles.container}>
+        <Text style={[globalStyles.text, {margin: 25, fontSize: 48}]}>Game Screen</Text>
 
             {checkboxes.map((isChecked, index) => (
-              <View key={index}>
+              <View 
+              style={globalStyles.checkboxCon}
+              key={index}>
               <Checkbox
+              style={globalStyles.checkbox}
             value={isChecked}
             onValueChange={() => handleCheckboxToggle(index)}
           />
