@@ -1,119 +1,104 @@
+import React, { useState } from "react";
+import { View, Pressable, Text, SafeAreaView } from "react-native";
+import { Button } from "react-native-paper";
+import DropDown from "react-native-paper-dropdown";
 
-import React, { useState } from 'react';
-import { View, Pressable, Text, SafeAreaView } from 'react-native';
-import {Picker} from '@react-native-picker/picker'
-
-import globalStyles from '../style/globalStyles';
+import globalStyles from "../style/globalStyles";
 
 const DropdownMenu = () => {
   const [selectedVersus, setSelectedVersus] = useState("solo");
   const [selectedDiff, setSelectedDiff] = useState("2");
+  const [showDropDown, setShowDropDown] = useState(false);
+  const [showDropDown2, setShowDropDown2] = useState(false);
+  const playTypeList = [
+    {
+      label: "Solo",
+      value: "solo",
+    },
+    {
+      label: "Versus",
+      value: "versus",
+    },
+  ];
 
-
+  const diffList = [
+    {
+      label: "Easy",
+      value: "2",
+    },
+    {
+      label: "Medium",
+      value: "4",
+    },
+    {
+      label: "Hard",
+      value: "8",
+    },
+  ];
 
   return {
-    selectedVersus, selectedDiff,
-    render:(
-    <SafeAreaView style={globalStyles.container}>
-      <Text
-              style={[globalStyles.text, {marginTop:'10%'}]}
-      >Play Type</Text>
-        <Picker
-          selectedVersus={selectedVersus}
-          onValueChange={(itemValue, itemIndex) => setSelectedVersus(itemValue)}
-          style={globalStyles.picker}
-          >
-          <Picker.Item 
-          
-          label="Solo" 
-          value="solo" />
-          <Picker.Item label="Versus" value="versus" />
-        </Picker>
-        <Text
-        style={globalStyles.text}
-        >Difficulty</Text>
-        <Picker
-          selectedDiff={selectedDiff}
-          onValueChange={(itemValue) => setSelectedDiff(itemValue)}
-          style={globalStyles.picker}
-        >
-          <Picker.Item label="Easy" value="2" />
-          <Picker.Item label="Medium" value="4" />
-          <Picker.Item label="Hard" value="6" />
-        </Picker>
-      </SafeAreaView>
-    )
-  }
+    selectedVersus,
+    selectedDiff,
+    render: (
+      <SafeAreaView>
 
+        <DropDown style={{marginBottom: '5%'}}
+              label={"Play Type"}
+              mode={"outlined"}
+              visible={showDropDown}
+              showDropDown={() => setShowDropDown(true)}
+              onDismiss={() => setShowDropDown(false)}
+              value={selectedVersus}
+              setValue={setSelectedVersus}
+              list={playTypeList}
+            />
+                    <DropDown
+              label={"Difficulty"}
+              mode={"outlined"}
+              visible={showDropDown2}
+              showDropDown={() => setShowDropDown2(true)}
+              onDismiss={() => setShowDropDown2(false)}
+              value={selectedDiff}
+              setValue={setSelectedDiff}
+              list={diffList}
+            />
+      </SafeAreaView>
+    ),
+  };
 };
 
-const SettingScreen = ({ navigation } ) => {
-  
-  const {render, selectedVersus, selectedDiff} = DropdownMenu()
-  const [isPressed1, setIsPressed1] = useState(false);
-  const [isPressed2, setIsPressed2] = useState(false);
-
-  const handlePressIn = (index) => {
-    console.log(index);
-    if (index == 1) {
-      setIsPressed1(true);
-    } else {
-      setIsPressed2(true);
-    } 
-  };
-
-  const handlePressOut = (index) => {
-    console.log(index);
-    if (index == 1) {
-      setIsPressed1(false);
-    } else {
-      setIsPressed2(false);
-    } 
-  };
-
+const SettingScreen = ({ navigation }) => {
+  const { render, selectedVersus, selectedDiff } = DropdownMenu();
 
   const handlePageNav = () => {
-    if(selectedVersus == "versus"){
-      navigation.navigate('Versus', {selectedDiff})
+    if (selectedVersus == "versus") {
+      navigation.navigate("Versus", { selectedDiff });
     } else {
-      navigation.navigate('Solo', {selectedDiff})
+      navigation.navigate("Solo", { selectedDiff });
     }
-  }
-  
-
-
+  };
 
   return (
-    <SafeAreaView style={globalStyles.container}>
+    <SafeAreaView style={{flex:1, justifyContent:"center", alignItems:'center'}}>
       {render}
-      <Pressable
-        style={[globalStyles.button, isPressed1 && globalStyles.buttonPressed]}
-        title="Play"
+      <Button style={{marginBottom: '5%'}}
+        mode="elevated"
+        uppercase="true"
+        labelStyle={{ fontSize: 18, fontFamily: "Caveat_400Regular" }}
         onPress={() => handlePageNav()}
-        onPressIn={() => handlePressIn(1)}
-        onPressOut={() => handlePressOut(1)}
-        activeOpacity={0.7}
       >
-        <Text style={globalStyles.text}>
-          Play
-        </Text>
-      </Pressable>
-      <Pressable
-              style={[globalStyles.button, isPressed2 && globalStyles.buttonPressed]}
-        title="Go to Home"
-        onPress={() => navigation.navigate('Home')}
-        onPressIn={() => handlePressIn(2)}
-        onPressOut={() => handlePressOut(2)}
-        activeOpacity={0.7}
-        >
-        <Text style={globalStyles.text}>
-          Home
-        </Text>
-      </Pressable>
+        Play
+      </Button>
+      <Button
+        mode="elevated"
+        uppercase="true"
+        labelStyle={{ fontSize: 18, fontFamily: "Caveat_400Regular" }}
+        onPress={() => navigation.navigate("Home")}
+      >
+        Home
+      </Button>
     </SafeAreaView>
   );
 };
 
-
-export default SettingScreen
-;
+export default SettingScreen;

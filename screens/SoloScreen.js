@@ -1,55 +1,58 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, Text} from 'react-native';
-import Checkbox from 'expo-checkbox';
+// import Checkbox from 'expo-checkbox';
 import SearchItems from "../searchItems.json"
+import { Card, Checkbox }  from 'react-native-paper';
 import globalStyles from '../style/globalStyles';
-
 
 const SoloScreen = ({ navigation, route }) => {
   let selectedDiff = route.params
-  console.log(typeof selectedDiff.selectedDiff)
-  const [checkboxes, setCheckboxes] = useState(generateCheckboxes());
-
-  function generateCheckboxes() {
-    const numberOfCheckboxes = Number(selectedDiff.selectedDiff);
-    console.log(numberOfCheckboxes)
-    return new Array(numberOfCheckboxes).fill(false);
-  }
-  const handleCheckboxToggle = (index) => {
-    console.log(index)
-    const updatedCheckboxes = [...checkboxes];
-    updatedCheckboxes[index] = !updatedCheckboxes[index];
-    setCheckboxes(updatedCheckboxes);
-
-    // Check if all checkboxes are checked
-    if (updatedCheckboxes.every((checkbox) => checkbox)) {
-      // Navigate to Page2 if all checkboxes are checked
-      navigation.navigate('Win');
-    }
-  };
-
-
-  return (
-    <View style={globalStyles.container}>
-        <Text style={[globalStyles.text, {margin: 25, fontSize: 48}]}>Game Screen</Text>
-
-            {checkboxes.map((isChecked, index) => (
-              <View 
-              style={globalStyles.checkboxCon}
-              key={index}>
-              <Checkbox
-              style={globalStyles.checkbox}
-            value={isChecked}
-            onValueChange={() => handleCheckboxToggle(index)}
-          />
-          <Text style={globalStyles.text}>{SearchItems[index]}</Text>
-        </View>
-      ))}
-
-
-    </View>
-  );
   
+  const [checkboxes, setCheckboxes] = useState(generateCheckboxes());
+  
+function generateCheckboxes() {
+  const numberOfCheckboxes = Number(selectedDiff.selectedDiff) // Random number of checkboxes (1 to 5)
+  const checkboxesArray = Array.from({ length: numberOfCheckboxes }, (_, index) => ({
+    id: `checkbox_${index}`,
+    checked: false,
+  }));
+  return checkboxesArray;
+}
+
+const handleCheckboxToggle = (checkboxId) => {
+  setCheckboxes((prevCheckboxes) =>
+    prevCheckboxes.map((checkbox) =>
+      checkbox.id === checkboxId ? { ...checkbox, checked: !checkbox.checked } : checkbox
+    )
+  );
 };
+
+const allChecked = checkboxes.every((checkbox) => checkbox.checked);
+
+// Navigate to a different screen when all checkboxes are checked
+if (allChecked) {
+  navigation.navigate('Win'); // Replace 'DifferentScreen' with the actual screen name
+}
+
+return (
+  <View style={{flex:1, justifyContent:'center', alignContent:'center'}}>
+    {checkboxes.map((checkbox) => (
+      <Card>
+
+        <Checkbox.Item
+          key={checkbox.id}
+          label={SearchItems[checkbox.id.split('_')[1]]}
+          status={checkbox.checked ? 'checked' : 'unchecked'}
+          onPress={() => handleCheckboxToggle(checkbox.id)}
+        />
+      </Card>
+
+    ))}
+  </View>
+);
+};
+
+
+
 
 export default SoloScreen;

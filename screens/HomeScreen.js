@@ -13,9 +13,6 @@ import globalStyles from "../style/globalStyles";
 import { Button } from "react-native-paper";
 
 const HomeScreen = ({ navigation }) => {
-  const [isPressed1, setIsPressed1] = useState(false);
-  const [isPressed2, setIsPressed2] = useState(false);
-  const [isPressed3, setIsPressed3] = useState(false);
 
   let [fontsLoaded] = useFonts({
     Caveat_400Regular,
@@ -25,35 +22,16 @@ const HomeScreen = ({ navigation }) => {
     return null;
   }
 
-  const handlePressIn = (index) => {
-    console.log(index);
-    if (index == 1) {
-      setIsPressed1(true);
-    } else if (index == 2) {
-      setIsPressed2(true);
-    } else {
-      setIsPressed3(true);
-    }
-  };
 
-  const handlePressOut = (index) => {
-    console.log(index);
-    if (index == 1) {
-      setIsPressed1(false);
-    } else if (index == 2) {
-      setIsPressed2(false);
-    } else {
-      setIsPressed3(false);
-    }
-  };
+
 
   let selectedDiff = "4";
   return (
     <SafeAreaView style={globalStyles.container}>
+            <View style={{height: '10%'}}></View>
       <Text style={[globalStyles.text, { margin: 25, fontSize: 48 }]}>
         Road Trip Game
       </Text>
-
 
       <View
         style={[
@@ -61,43 +39,37 @@ const HomeScreen = ({ navigation }) => {
           { justifyContent: "flex-end", alignItems: "center" },
         ]}
       >
-        <Pressable
-          style={[
-            globalStyles.button,
-            isPressed1 && globalStyles.buttonPressed,
-          ]}
+        <Button
+          mode="elevated"
+          uppercase="true"
+          labelStyle={{ fontSize: 18, fontFamily: "Caveat_400Regular" }}
+          style={{marginBottom: '1%'}}
           onPress={() => navigation.navigate("Solo", { selectedDiff })}
-          onPressIn={() => handlePressIn(1)}
-          onPressOut={() => handlePressOut(1)}
-          activeOpacity={0.7}
-        >
-          <Text style={globalStyles.buttonText}>Play</Text>
-        </Pressable>
+        >Play</Button>
 
         <Button
-          mode = 'elevated'
-          uppercase='true'
-          labelStyle={{fontSize: 18,fontFamily: 'Caveat_400Regular' }}
+          mode="elevated"
+          uppercase="true"
+          labelStyle={{ fontSize: 18, fontFamily: "Caveat_400Regular" }}
           onPress={() => navigation.navigate("Settings")}
+          style={{marginBottom: '1%'}}
 
         >
           Settings
         </Button>
 
-        <Pressable
-          style={[
-            globalStyles.button,
-            isPressed3 && globalStyles.buttonPressed,
-            { marginBottom: "3%" },
-          ]}
+        <Button
+          mode="elevated"
+          uppercase="true"
+          labelStyle={{ fontSize: 18, fontFamily: "Caveat_400Regular" }}
           onPress={() => navigation.navigate("HowToPlay")}
-          onPressIn={handlePressIn}
-          onPressOut={() => handlePressOut(3)}
-          activeOpacity={0.7}
+          style={{marginBottom: '1%'}}
+
         >
-          <Text style={globalStyles.buttonText}>How to Play</Text>
-        </Pressable>
+          How to Play
+        </Button>
       </View>
+      <View style={{height: '10%'}}></View>
     </SafeAreaView>
   );
 };

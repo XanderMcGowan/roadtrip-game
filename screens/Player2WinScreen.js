@@ -1,35 +1,20 @@
-import React, { useState } from 'react';
-import { View, Pressable, Text } from 'react-native';
-import globalStyles from '../style/globalStyles';
+import React from "react";
+import { View, Text } from "react-native";
+import globalStyles from "../style/globalStyles";
 
+import { Button } from "react-native-paper";
 const Player2WinScreen = ({ navigation }) => {
-
-  const [isPressed, setIsPressed] = useState(false);
-
-  const handlePressIn = () => {
-      setIsPressed(true);
-
-  };
-
-  const handlePressOut = () => {
-      setIsPressed(false);
-  };
   return (
-    <View style={globalStyles.container}>
-        <Text style={globalStyles.text}>
-
-        Player 2 Wins !!!
-        </Text>
-      <Pressable
-        style={[globalStyles.button, isPressed && globalStyles.buttonPressed]}
-        title="Home"
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text style={globalStyles.text}>Player 2 Win Screen</Text>
+      <Button
+        mode="elevated"
+        uppercase="true"
+        labelStyle={{ fontSize: 18, fontFamily: "Caveat_400Regular" }}
         onPress={() => navigation.navigate("Home")}
-        onPressIn={() => handlePressIn()}
-        onPressOut={() => handlePressOut()}
-        activeOpacity={0.7}
       >
-        <Text style={globalStyles.text}>Home</Text>
-      </Pressable>
+        Home
+      </Button>
     </View>
   );
 };
