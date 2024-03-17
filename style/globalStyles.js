@@ -58,6 +58,9 @@ StyleSheet.create({
 
 
   },
+  clickedCard: {
+    opacity: 0.5, // Change opacity when clicked
+  },
   picker: {
     width: 200,
     height: 50,

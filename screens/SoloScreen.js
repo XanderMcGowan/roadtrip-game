@@ -1,14 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text} from 'react-native';
-// import Checkbox from 'expo-checkbox';
+import GrayOutCard from '../components/GrayOutCard';
 import SearchItems from "../searchItems.json"
-import { Card, Checkbox }  from 'react-native-paper';
+import { Card, TouchableRipple }  from 'react-native-paper';
 import globalStyles from '../style/globalStyles';
 
 const SoloScreen = ({ navigation, route }) => {
   let selectedDiff = route.params
   
   const [checkboxes, setCheckboxes] = useState(generateCheckboxes());
+
   
 function generateCheckboxes() {
   const numberOfCheckboxes = Number(selectedDiff.selectedDiff) // Random number of checkboxes (1 to 5)
@@ -20,9 +21,10 @@ function generateCheckboxes() {
 }
 
 const handleCheckboxToggle = (checkboxId) => {
+  console.log(checkboxId)
   setCheckboxes((prevCheckboxes) =>
     prevCheckboxes.map((checkbox) =>
-      checkbox.id === checkboxId ? { ...checkbox, checked: !checkbox.checked } : checkbox
+      checkbox.id === checkboxId ? { ...checkbox, checked: !checkbox.checked } : checkbox,
     )
   );
 };
@@ -34,18 +36,25 @@ if (allChecked) {
   navigation.navigate('Win'); // Replace 'DifferentScreen' with the actual screen name
 }
 
+
+
 return (
   <View style={{flex:1, justifyContent:'center', alignContent:'center'}}>
     {checkboxes.map((checkbox) => (
-      <Card>
-
-        <Checkbox.Item
+      <TouchableRipple  onPress={() => handleCheckboxToggle(checkbox.id)} >
+        <Card 
           key={checkbox.id}
-          label={SearchItems[checkbox.id.split('_')[1]]}
           status={checkbox.checked ? 'checked' : 'unchecked'}
-          onPress={() => handleCheckboxToggle(checkbox.id)}
-        />
-      </Card>
+          style={[
+            globalStyles.card,
+            checkbox.checked && globalStyles.clickedCard // Apply clicked style if isClicked is true
+          ]}
+        >
+          <Card.Content>
+            <Text style={globalStyles.text}>{SearchItems[checkbox.id.split('_')[1]]}</Text>
+          </Card.Content>
+        </Card>
+      </TouchableRipple>
 
     ))}
   </View>
