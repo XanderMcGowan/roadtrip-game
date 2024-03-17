@@ -6,6 +6,7 @@ StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
+    justifyContent:'center',
     // borderWidth: 2,
     // borderColor: 'red',
     alignItems: 'center',
@@ -43,6 +44,12 @@ StyleSheet.create({
     color: "black",
     fontSize: 24,
   },
+  card: {
+    width: '60%',
+    margin: "2%",
+
+    elevation: 4,
+  },
   checkbox: {
     height: '25%',
     width: '25%'
@@ -73,6 +80,7 @@ StyleSheet.create({
     marginBottom:'1.5%+'
   },
   text: {
+    textAlign: 'center', 
     fontFamily: 'Caveat_400Regular',
     fontSize: 32,
     color: '#333',

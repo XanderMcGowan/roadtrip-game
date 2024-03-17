@@ -39,10 +39,11 @@ if (allChecked) {
 
 
 return (
-  <View style={{flex:1, justifyContent:'center', alignContent:'center'}}>
+  <View style={[globalStyles.container]}>
     {checkboxes.map((checkbox) => (
-      <TouchableRipple  onPress={() => handleCheckboxToggle(checkbox.id)} >
+      
         <Card 
+      onPress={() => handleCheckboxToggle(checkbox.id)} 
           key={checkbox.id}
           status={checkbox.checked ? 'checked' : 'unchecked'}
           style={[
@@ -50,11 +51,13 @@ return (
             checkbox.checked && globalStyles.clickedCard // Apply clicked style if isClicked is true
           ]}
         >
-          <Card.Content>
+
+
+          <Card.Content 
+          style={{ justifyContent: "center",}}>
             <Text style={globalStyles.text}>{SearchItems[checkbox.id.split('_')[1]]}</Text>
           </Card.Content>
         </Card>
-      </TouchableRipple>
 
     ))}
   </View>
