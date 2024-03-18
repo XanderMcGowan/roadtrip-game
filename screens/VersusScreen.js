@@ -55,7 +55,7 @@ if (allChecked2) {
 }
 
 return (
-  <View style={{flex:1, justifyContent:'center', alignContent:'center'}}>
+  <View style={globalStyles.container}>
       <Text variant="headlineLarge" style={{fontFamily:'Caveat_400Regular'}}>Player 1</Text>
       {checkboxes1.map((checkbox) => (
       
