@@ -1,12 +1,21 @@
 import React from "react";
 import { View, Text } from "react-native";
+import { Button } from "react-native-paper";
+import LottieView from "lottie-react-native";
+import Confetti from '../assets/confetti.json'
 import globalStyles from "../style/globalStyles";
 
-import { Button } from "react-native-paper";
-const Player1WinScreen = ({ navigation }) => {
+const Player1WinScreen = ({ navigation}) => {
+
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text style={globalStyles.text}>Player 1 Win Screen</Text>
+      <LottieView
+      style={globalStyles.lottie} 
+      source={Confetti}
+      resizeMode='cover'
+      autoPlay
+      loop={false}/>
+      <Text style={globalStyles.text}>Player 1 Wins !!</Text>
       <Button
         mode="elevated"
         uppercase="true"

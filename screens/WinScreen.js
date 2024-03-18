@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text } from "react-native";
 import LottieView from "lottie-react-native";
-import globalStyles from "../style/globalStyles";
 import Confetti from '../assets/confetti.json'
+import globalStyles from "../style/globalStyles";
 
 import { Button } from "react-native-paper";
 const WinScreen = ({ navigation }) => {
@@ -14,7 +14,7 @@ const WinScreen = ({ navigation }) => {
       resizeMode='cover'
       autoPlay
       loop={false}/>
-      <Text style={globalStyles.text}>Win Screen</Text>
+      <Text style={globalStyles.text}>You Win</Text>
       <Button
         mode="elevated"
         uppercase="true"

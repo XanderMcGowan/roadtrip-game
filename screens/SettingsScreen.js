@@ -41,10 +41,14 @@ const DropdownMenu = () => {
     selectedDiff,
     render: (
       <SafeAreaView>
+        <View
+        style={{marginBottom: '5%'}}
+        >
 
-        <DropDown style={{marginBottom: '5%'}}
+
+        <DropDown
               label={"Play Type"}
-              mode={"outlined"}
+              mode={"flat"}
               visible={showDropDown}
               showDropDown={() => setShowDropDown(true)}
               onDismiss={() => setShowDropDown(false)}
@@ -52,9 +56,11 @@ const DropdownMenu = () => {
               setValue={setSelectedVersus}
               list={playTypeList}
             />
+        </View>
                     <DropDown
+                    style={{marginBottom: '5%'}}
               label={"Difficulty"}
-              mode={"outlined"}
+              mode={"flat"}
               visible={showDropDown2}
               showDropDown={() => setShowDropDown2(true)}
               onDismiss={() => setShowDropDown2(false)}

@@ -32,7 +32,7 @@ const allChecked = checkboxes.every((checkbox) => checkbox.checked);
 
 // Navigate to a different screen when all checkboxes are checked
 if (allChecked) {
-  navigation.navigate('Win'); // Replace 'DifferentScreen' with the actual screen name
+  navigation.navigate('Win' ); // Replace 'DifferentScreen' with the actual screen name
 }
 
 

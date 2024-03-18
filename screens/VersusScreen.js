@@ -33,11 +33,13 @@ const allChecked1 = checkboxes1.every((checkbox) => checkbox.checked);
 
 // Navigate to a different screen when all checkboxes are checked
 if (allChecked1) {
+  console.log('Player 1 wins')
   navigation.navigate('Player1WinScreen'); // Replace 'DifferentScreen' with the actual screen name
 }
 
 
 const handleCheckboxToggle2 = (checkboxId) => {
+  
   setCheckboxes2((prevCheckboxes) =>
     prevCheckboxes.map((checkbox) =>
       checkbox.id === checkboxId ? { ...checkbox, checked: !checkbox.checked } : checkbox
@@ -55,31 +57,47 @@ if (allChecked2) {
 return (
   <View style={{flex:1, justifyContent:'center', alignContent:'center'}}>
       <Text variant="headlineLarge" style={{fontFamily:'Caveat_400Regular'}}>Player 1</Text>
-    {checkboxes1.map((checkbox) => (
-      <Card>
+      {checkboxes1.map((checkbox) => (
+      
+      <Card 
+    onPress={() => handleCheckboxToggle1(checkbox.id)} 
+        key={checkbox.id}
+        status={checkbox.checked ? 'checked' : 'unchecked'}
+        style={[
+          globalStyles.card,
+          checkbox.checked && globalStyles.clickedCard // Apply clicked style if isClicked is true
+        ]}
+      >
 
-        <Checkbox.Item
-          key={checkbox.id}
-          label={SearchItems[checkbox.id.split('_')[1]]}
-          status={checkbox.checked ? 'checked' : 'unchecked'}
-          onPress={() => handleCheckboxToggle1(checkbox.id)}
-        />
+
+        <Card.Content 
+        style={{ justifyContent: "center",}}>
+          <Text style={globalStyles.text}>{SearchItems[checkbox.id.split('_')[1]]}</Text>
+        </Card.Content>
       </Card>
 
-    ))}
+  ))}
       <Text variant="headlineLarge" style={{fontFamily:'Caveat_400Regular'}}>Player 2</Text>
-{checkboxes2.map((checkbox) => (
-      <Card>
+      {checkboxes2.map((checkbox) => (
+      
+      <Card 
+    onPress={() => handleCheckboxToggle2(checkbox.id)} 
+        key={checkbox.id}
+        status={checkbox.checked ? 'checked' : 'unchecked'}
+        style={[
+          globalStyles.card,
+          checkbox.checked && globalStyles.clickedCard // Apply clicked style if isClicked is true
+        ]}
+      >
 
-        <Checkbox.Item
-          key={checkbox.id}
-          label={SearchItems[checkbox.id.split('_')[1]]}
-          status={checkbox.checked ? 'checked' : 'unchecked'}
-          onPress={() => handleCheckboxToggle2(checkbox.id)}
-        />
+
+        <Card.Content 
+        style={{ justifyContent: "center",}}>
+          <Text style={globalStyles.text}>{SearchItems[checkbox.id.split('_')[1]]}</Text>
+        </Card.Content>
       </Card>
 
-    ))}
+  ))}
   </View>
 );
 };
