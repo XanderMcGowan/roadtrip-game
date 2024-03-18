@@ -68,6 +68,14 @@ StyleSheet.create({
   clickedCard: {
     opacity: 0.5, // Change opacity when clicked
   },
+  lottie:{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: -1,
+  },
   picker: {
     width: 200,
     height: 50,

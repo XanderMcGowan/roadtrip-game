@@ -1,11 +1,19 @@
 import React from "react";
 import { View, Text } from "react-native";
+import LottieView from "lottie-react-native";
 import globalStyles from "../style/globalStyles";
+import Confetti from '../assets/confetti.json'
 
 import { Button } from "react-native-paper";
 const WinScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <LottieView
+      style={globalStyles.lottie} 
+      source={Confetti}
+      resizeMode='cover'
+      autoPlay
+      loop={false}/>
       <Text style={globalStyles.text}>Win Screen</Text>
       <Button
         mode="elevated"

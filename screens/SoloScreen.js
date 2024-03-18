@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text} from 'react-native';
-import GrayOutCard from '../components/GrayOutCard';
 import SearchItems from "../searchItems.json"
-import { Card, TouchableRipple }  from 'react-native-paper';
+import { Card }  from 'react-native-paper';
 import globalStyles from '../style/globalStyles';
 
 const SoloScreen = ({ navigation, route }) => {
