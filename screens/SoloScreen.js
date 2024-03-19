@@ -1,13 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text} from 'react-native';
-import SearchItems from "../searchItems.json"
 import { Card }  from 'react-native-paper';
+import SearchItems from "../searchItems.json"
 import globalStyles from '../style/globalStyles';
+
+
 
 const SoloScreen = ({ navigation, route }) => {
   let selectedDiff = route.params
   
   const [checkboxes, setCheckboxes] = useState(generateCheckboxes());
+
+
 
   
 function generateCheckboxes() {
@@ -20,6 +24,7 @@ function generateCheckboxes() {
 }
 
 const handleCheckboxToggle = (checkboxId) => {
+
   console.log(checkboxId)
   setCheckboxes((prevCheckboxes) =>
     prevCheckboxes.map((checkbox) =>
