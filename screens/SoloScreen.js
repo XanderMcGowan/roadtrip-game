@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text} from 'react-native';
 import { Card }  from 'react-native-paper';
+import { Audio } from 'expo-av';
 import SearchItems from "../searchItems.json"
 import globalStyles from '../style/globalStyles';
 
@@ -10,7 +11,26 @@ const SoloScreen = ({ navigation, route }) => {
   let selectedDiff = route.params
   
   const [checkboxes, setCheckboxes] = useState(generateCheckboxes());
+  const [sound, setSound] = useState();
+  
+  async function playSound() {
+    console.log('Loading Sound');
+    const { sound } = await Audio.Sound.createAsync( require('../sounds/click2.mp3')
+    );
+    setSound(sound);
 
+    console.log('Playing Sound');
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log('Unloading Sound');
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
 
 
   
@@ -24,7 +44,7 @@ function generateCheckboxes() {
 }
 
 const handleCheckboxToggle = (checkboxId) => {
-
+  playSound()
   console.log(checkboxId)
   setCheckboxes((prevCheckboxes) =>
     prevCheckboxes.map((checkbox) =>
