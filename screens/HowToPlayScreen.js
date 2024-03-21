@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Pressable, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import globalStyles from '../style/globalStyles';
 import { Button } from 'react-native-paper';
 

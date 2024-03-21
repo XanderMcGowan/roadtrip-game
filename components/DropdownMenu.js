@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Picker, StyleSheet, Text, Pressable } from "react-native";
+import { View, Picker, StyleSheet, Text } from "react-native";
 
 const DropdownMenu = () => {
   const [selectedDiff, setSelectedDiff] = useState("2");

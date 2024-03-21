@@ -1,11 +1,9 @@
-// HomeScreen.js
+
 import React, { useState } from "react";
 import {
   View,
-  Pressable,
   SafeAreaView,
   Text,
-  ImageBackground,
 } from "react-native";
 import { useFonts, Caveat_400Regular } from "@expo-google-fonts/caveat";
 import globalStyles from "../style/globalStyles";

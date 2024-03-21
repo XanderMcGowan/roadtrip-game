@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Pressable, Text, SafeAreaView } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
 import { Button } from "react-native-paper";
 import DropDown from "react-native-paper-dropdown";
 
@@ -41,33 +41,29 @@ const DropdownMenu = () => {
     selectedDiff,
     render: (
       <SafeAreaView>
-        <View
-        style={{marginBottom: '5%'}}
-        >
-
-
-        <DropDown
-              label={"Play Type"}
-              mode={"flat"}
-              visible={showDropDown}
-              showDropDown={() => setShowDropDown(true)}
-              onDismiss={() => setShowDropDown(false)}
-              value={selectedVersus}
-              setValue={setSelectedVersus}
-              list={playTypeList}
-            />
+        <View style={{ marginBottom: "5%" }}>
+          <DropDown
+            label={"Play Type"}
+            mode={"flat"}
+            visible={showDropDown}
+            showDropDown={() => setShowDropDown(true)}
+            onDismiss={() => setShowDropDown(false)}
+            value={selectedVersus}
+            setValue={setSelectedVersus}
+            list={playTypeList}
+          />
         </View>
-                    <DropDown
-                    style={{marginBottom: '5%'}}
-              label={"Difficulty"}
-              mode={"flat"}
-              visible={showDropDown2}
-              showDropDown={() => setShowDropDown2(true)}
-              onDismiss={() => setShowDropDown2(false)}
-              value={selectedDiff}
-              setValue={setSelectedDiff}
-              list={diffList}
-            />
+        <DropDown
+          style={{ marginBottom: "5%" }}
+          label={"Difficulty"}
+          mode={"flat"}
+          visible={showDropDown2}
+          showDropDown={() => setShowDropDown2(true)}
+          onDismiss={() => setShowDropDown2(false)}
+          value={selectedDiff}
+          setValue={setSelectedDiff}
+          list={diffList}
+        />
       </SafeAreaView>
     ),
   };
@@ -85,9 +81,12 @@ const SettingScreen = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={{flex:1, justifyContent:"center", alignItems:'center'}}>
+    <SafeAreaView
+      style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+    >
       {render}
-      <Button style={{marginBottom: '5%'}}
+      <Button
+        style={{ marginBottom: "5%" }}
         mode="elevated"
         uppercase="true"
         labelStyle={{ fontSize: 18, fontFamily: "Caveat_400Regular" }}

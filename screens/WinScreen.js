@@ -1,30 +1,30 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
-import { Audio } from 'expo-av';
+import { Audio } from "expo-av";
 import LottieView from "lottie-react-native";
-import Confetti from '../assets/confetti.json'
+import Confetti from "../assets/confetti.json";
 import globalStyles from "../style/globalStyles";
 
 import { Button } from "react-native-paper";
 const WinScreen = ({ navigation }) => {
-
   const [sound, setSound] = useState();
-  
+
   async function playSound() {
-    console.log('Loading Sound');
-    const { sound } = await Audio.Sound.createAsync( require('../sounds/win.mp3')
+    console.log("Loading Sound");
+    const { sound } = await Audio.Sound.createAsync(
+      require("../sounds/win.mp3")
     );
     setSound(sound);
 
-    console.log('Playing Sound');
+    console.log("Playing Sound");
     await sound.playAsync();
   }
 
   useEffect(() => {
-    playSound()
+    playSound();
     return sound
       ? () => {
-          console.log('Unloading Sound');
+          console.log("Unloading Sound");
           sound.unloadAsync();
         }
       : undefined;
@@ -33,11 +33,12 @@ const WinScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <LottieView
-      style={globalStyles.lottie} 
-      source={Confetti}
-      resizeMode='cover'
-      autoPlay
-      loop={false}/>
+        style={globalStyles.lottie}
+        source={Confetti}
+        resizeMode="cover"
+        autoPlay
+        loop={false}
+      />
       <Text style={globalStyles.text}>You Win</Text>
       <Button
         mode="elevated"
