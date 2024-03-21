@@ -53,13 +53,22 @@ const handleCheckboxToggle = (checkboxId) => {
   );
 };
 
-const allChecked = checkboxes.every((checkbox) => checkbox.checked);
 
-// Navigate to a different screen when all checkboxes are checked
-if (allChecked) {
-  navigation.navigate('Win' ); // Replace 'DifferentScreen' with the actual screen name
+function checkAllAndNavigate(checkboxes, navigation) {
+  const allChecked = checkboxes.every((checkbox) => checkbox.checked);
+  
+  if (allChecked) {
+setTimeout(() => {
+    console.log('Timeout completed!');
+    navigation.navigate('Win');
+  }, 60);
+  
+  }
 }
 
+// Example usage:
+// Assuming you have checkboxes and navigation available in your scope
+checkAllAndNavigate(checkboxes, navigation);
 
 
 return (
