@@ -7,7 +7,7 @@ import { Audio } from 'expo-av';
 const MuteButton = () => {
     
   const [iconName, setIconName] = useState('volume-high');
-  const { isMuted, toggleMute } = useMute();
+  const { isMuted, toggleMute } = useState(false);
 
   // const muteButton = () => {
   //   toggleIcon()

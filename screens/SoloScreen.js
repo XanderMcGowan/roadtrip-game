@@ -2,11 +2,23 @@ import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import { Card } from "react-native-paper";
 import { Audio } from "expo-av";
-import SearchItems from "../searchItems.json";
+import SearchItems from "../searchItems";
 import globalStyles from "../style/globalStyles";
+import searchItems from "../searchItems";
 
 const SoloScreen = ({ navigation, route }) => {
+  console.log(SearchItems)
   let selectedDiff = route.params;
+  let newDiff = []
+
+
+  if ( selectedDiff.selectedDiff == 4) {
+    newDiff = [...searchItems.easy, ...searchItems.medium]
+  } else {
+    newDiff = [...searchItems.easy, ...searchItems.medium,...searchItems.hard]
+    console.log(newDiff)
+  }
+
 
   const [checkboxes, setCheckboxes] = useState(generateCheckboxes());
   const [sound, setSound] = useState();
@@ -81,7 +93,7 @@ const SoloScreen = ({ navigation, route }) => {
         >
           <Card.Content style={{ justifyContent: "center" }}>
             <Text style={globalStyles.text}>
-              {SearchItems[checkbox.id.split("_")[1]]}
+              {newDiff[checkbox.id.split("_")[1]]}
             </Text>
           </Card.Content>
         </Card>

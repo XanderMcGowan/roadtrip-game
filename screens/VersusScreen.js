@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View } from "react-native";
-import SearchItems from "../searchItems.json";
+import SearchItems from "../searchItems.js";
 import globalStyles from "../style/globalStyles";
 import { Card, Checkbox } from "react-native-paper";
 import { Text } from "react-native-paper";
@@ -73,7 +73,7 @@ const VersusScreen = ({ navigation, route }) => {
         >
           <Card.Content style={{ justifyContent: "center" }}>
             <Text style={globalStyles.text}>
-              {SearchItems[checkbox.id.split("_")[1]]}
+              {SearchItems.easy[checkbox.id.split("_")[1]]}
             </Text>
           </Card.Content>
         </Card>
