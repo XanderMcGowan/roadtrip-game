@@ -24,15 +24,15 @@ const DropdownMenu = () => {
   const diffList = [
     {
       label: "Easy",
-      value: "2",
+      value: "easy",
     },
     {
       label: "Medium",
-      value: "4",
+      value: "medium",
     },
     {
       label: "Hard",
-      value: "8",
+      value: "hard",
     },
   ];
 
@@ -71,12 +71,13 @@ const DropdownMenu = () => {
 
 const SettingScreen = ({ navigation }) => {
   const { render, selectedVersus, selectedDiff } = DropdownMenu();
+  let number = 4
 
   const handlePageNav = () => {
     if (selectedVersus == "versus") {
       navigation.navigate("Versus", { selectedDiff });
     } else {
-      navigation.navigate("Solo", { selectedDiff });
+      navigation.navigate("Solo", {selectedDiff, number});
     }
   };
 

@@ -8,13 +8,17 @@ import searchItems from "../searchItems";
 
 const SoloScreen = ({ navigation, route }) => {
   console.log(SearchItems)
-  let selectedDiff = route.params;
+  let gameParams = route.params;
   let newDiff = []
+  console.log("Selected", gameParams)
+  console.log(gameParams.number)
 
 
-  if ( selectedDiff.selectedDiff == 4) {
+  if ( gameParams.selectedDiff == "easy") {
+    newDiff = [searchItems.easy]
+  } else  if ( gameParams.selectedDiff == "medium") {
     newDiff = [...searchItems.easy, ...searchItems.medium]
-  } else {
+  } else{
     newDiff = [...searchItems.easy, ...searchItems.medium,...searchItems.hard]
     console.log(newDiff)
   }
@@ -44,7 +48,7 @@ const SoloScreen = ({ navigation, route }) => {
   }, [sound]);
 
   function generateCheckboxes() {
-    const numberOfCheckboxes = Number(selectedDiff.selectedDiff); // Random number of checkboxes (1 to 5)
+    const numberOfCheckboxes = Number(gameParams.number); // Random number of checkboxes (1 to 5)
     const checkboxesArray = Array.from(
       { length: numberOfCheckboxes },
       (_, index) => ({

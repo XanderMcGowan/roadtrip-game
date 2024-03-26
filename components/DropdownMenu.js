@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Picker, StyleSheet, Text } from "react-native";
 
 const DropdownMenu = () => {
-  const [selectedDiff, setSelectedDiff] = useState("2");
+  const [selectedDiff, setSelectedDiff] = useState("medium");
   const [selectedVersus, setSelectedVersus] = useState("solo");
 
 
@@ -24,9 +24,9 @@ const DropdownMenu = () => {
         onValueChange={(itemValue, itemIndex) => setSelectedDiff(itemValue)}
         style={styles.picker}
       >
-        <Picker.Item label="Easy" value="2" />
-        <Picker.Item label="Medium" value="4" />
-        <Picker.Item label="Hard" value="6" />
+        <Picker.Item label="Easy" value="easy" />
+        <Picker.Item label="Medium" value="medium" />
+        <Picker.Item label="Hard" value="hard" />
       </Picker>
     </View>
   );
