@@ -24,7 +24,7 @@ const HomeScreen = ({ navigation }) => {
 
 
   let selectedDiff = "medium"
-  let number = 4
+  let selectedNum = 4
   
   return (
     <SafeAreaView style={globalStyles.container}>
@@ -44,7 +44,7 @@ const HomeScreen = ({ navigation }) => {
           uppercase="true"
           labelStyle={{ fontSize: 18, fontFamily: "Caveat_400Regular" }}
           style={{marginBottom: '1%'}}
-          onPress={() => navigation.navigate("Solo", { selectedDiff, number })}
+          onPress={() => navigation.navigate("Solo", { selectedDiff, selectedNum })}
         >Play</Button>
 
         <Button

@@ -10,18 +10,39 @@ const SoloScreen = ({ navigation, route }) => {
   console.log(SearchItems)
   let gameParams = route.params;
   let newDiff = []
-  console.log("Selected", gameParams)
-  console.log(gameParams.number)
+  console.log(gameParams)
+  console.log(gameParams.selectedDiff)
+
 
 
   if ( gameParams.selectedDiff == "easy") {
-    newDiff = [searchItems.easy]
+    newDiff = [...searchItems.easy]
   } else  if ( gameParams.selectedDiff == "medium") {
     newDiff = [...searchItems.easy, ...searchItems.medium]
   } else{
     newDiff = [...searchItems.easy, ...searchItems.medium,...searchItems.hard]
     console.log(newDiff)
   }
+
+  function getRandomIndexes(originalArray, size) {
+    const indexes = [];
+    const randomArray = []
+  
+    // Generate random indexes and add them to the array
+    while (indexes.length < size) {
+      const randomIndex = Math.floor(Math.random() * originalArray.length);
+      if (!indexes.includes(randomIndex)) {
+        indexes.push(randomIndex)
+        randomArray.push(newDiff[randomIndex])
+        ;
+      }
+    }
+  
+    return randomArray;
+  }
+  
+  const randomArray = getRandomIndexes(newDiff, Number(gameParams.selectedNum));
+  console.log(randomArray);
 
 
   const [checkboxes, setCheckboxes] = useState(generateCheckboxes());
@@ -48,7 +69,7 @@ const SoloScreen = ({ navigation, route }) => {
   }, [sound]);
 
   function generateCheckboxes() {
-    const numberOfCheckboxes = Number(gameParams.number); // Random number of checkboxes (1 to 5)
+    const numberOfCheckboxes = Number(gameParams.selectedNum);
     const checkboxesArray = Array.from(
       { length: numberOfCheckboxes },
       (_, index) => ({
@@ -97,7 +118,7 @@ const SoloScreen = ({ navigation, route }) => {
         >
           <Card.Content style={{ justifyContent: "center" }}>
             <Text style={globalStyles.text}>
-              {newDiff[checkbox.id.split("_")[1]]}
+              {randomArray[checkbox.id.split("_")[1]]}
             </Text>
           </Card.Content>
         </Card>

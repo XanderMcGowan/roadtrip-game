@@ -7,9 +7,11 @@ import globalStyles from "../style/globalStyles";
 
 const DropdownMenu = () => {
   const [selectedVersus, setSelectedVersus] = useState("solo");
-  const [selectedDiff, setSelectedDiff] = useState("2");
+  const [selectedDiff, setSelectedDiff] = useState("easy");
+  const [selectedNum, setSelectedNum] = useState("4");
   const [showDropDown, setShowDropDown] = useState(false);
   const [showDropDown2, setShowDropDown2] = useState(false);
+  const [showDropDown3, setShowDropDown3] = useState(false);
   const playTypeList = [
     {
       label: "Solo",
@@ -36,9 +38,25 @@ const DropdownMenu = () => {
     },
   ];
 
+  const numList = [
+    {
+      label: "2",
+      value: "2",
+    },
+    {
+      label: "4",
+      value: "4",
+    },
+    {
+      label: "6",
+      value: "6",
+    },
+  ];
+
   return {
     selectedVersus,
     selectedDiff,
+    selectedNum,
     render: (
       <SafeAreaView>
         <View style={{ marginBottom: "5%" }}>
@@ -64,20 +82,30 @@ const DropdownMenu = () => {
           setValue={setSelectedDiff}
           list={diffList}
         />
+                <DropDown
+          style={{ marginBottom: "5%" }}
+          label={"Number of Items"}
+          mode={"flat"}
+          visible={showDropDown3}
+          showDropDown={() => setShowDropDown3(true)}
+          onDismiss={() => setShowDropDown3(false)}
+          value={selectedNum}
+          setValue={setSelectedNum}
+          list={numList}
+        />
       </SafeAreaView>
     ),
   };
 };
 
 const SettingScreen = ({ navigation }) => {
-  const { render, selectedVersus, selectedDiff } = DropdownMenu();
-  let number = 4
+  const { render, selectedVersus, selectedDiff, selectedNum } = DropdownMenu();
 
   const handlePageNav = () => {
     if (selectedVersus == "versus") {
       navigation.navigate("Versus", { selectedDiff });
     } else {
-      navigation.navigate("Solo", {selectedDiff, number});
+      navigation.navigate("Solo", {selectedDiff, selectedNum});
     }
   };
 
