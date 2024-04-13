@@ -2,49 +2,14 @@ import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import { Card } from "react-native-paper";
 import { Audio } from "expo-av";
-import SearchItems from "../searchItems";
 import globalStyles from "../style/globalStyles";
 import searchItems from "../searchItems";
 
 const SoloScreen = ({ navigation, route }) => {
-  console.log(SearchItems)
   let gameParams = route.params;
-  let newDiff = []
-  console.log(gameParams)
-  console.log(gameParams.selectedDiff)
+  let newDiff = [];
 
-
-
-  if ( gameParams.selectedDiff == "easy") {
-    newDiff = [...searchItems.easy]
-  } else  if ( gameParams.selectedDiff == "medium") {
-    newDiff = [...searchItems.easy, ...searchItems.medium]
-  } else{
-    newDiff = [...searchItems.easy, ...searchItems.medium,...searchItems.hard]
-    console.log(newDiff)
-  }
-
-  function getRandomIndexes(originalArray, size) {
-    const indexes = [];
-    const randomArray = []
-  
-    // Generate random indexes and add them to the array
-    while (indexes.length < size) {
-      const randomIndex = Math.floor(Math.random() * originalArray.length);
-      if (!indexes.includes(randomIndex)) {
-        indexes.push(randomIndex)
-        randomArray.push(newDiff[randomIndex])
-        ;
-      }
-    }
-  
-    return randomArray;
-  }
-  
-  const randomArray = getRandomIndexes(newDiff, Number(gameParams.selectedNum));
-  console.log(randomArray);
-
-
+  const [randomArray, setRandomArray] = useState(getRandomIndexes());
   const [checkboxes, setCheckboxes] = useState(generateCheckboxes());
   const [sound, setSound] = useState();
 
@@ -67,6 +32,41 @@ const SoloScreen = ({ navigation, route }) => {
         }
       : undefined;
   }, [sound]);
+
+  function getRandomIndexes() {
+    let size = Number(gameParams.selectedNum);
+    const indexes = [];
+    const randomArray = [];
+
+    if (gameParams.selectedDiff == "easy") {
+      newDiff = [...searchItems.easy];
+      console.log(newDiff);
+    } else if (gameParams.selectedDiff == "medium") {
+      newDiff = [...searchItems.easy, ...searchItems.medium];
+      console.log(newDiff);
+    } else {
+      newDiff = [
+        ...searchItems.easy,
+        ...searchItems.medium,
+        ...searchItems.hard,
+      ];
+      console.log(newDiff);
+    }
+
+
+    // Generate random indexes and add them to the array
+    while (indexes.length < size) {
+      const randomIndex = Math.floor(Math.random() *newDiff.length);
+      console.log(indexes)
+      if (!indexes.includes(randomIndex)) {
+        console.log("pushing")
+        indexes.push(randomIndex);
+        randomArray.push(newDiff[randomIndex]);
+      }
+    }
+
+    return randomArray;
+  }
 
   function generateCheckboxes() {
     const numberOfCheckboxes = Number(gameParams.selectedNum);
