@@ -4,18 +4,32 @@ const globalStyles =
 
 StyleSheet.create({
   container: {
-    padding: '5%',
-    height:'100%',
+    // backgroundColor:'red',
+    width: '100%',
+    paddingTop: '10%',
     flex: 1,
     justifyContent:'center',
     alignItems: 'center',
     flexDirection: "row",
     flexWrap: "wrap",
+    // borderWidth: 5, // Border wi
+    // borderColor: 'black', // Border color
   },
+  containerHome:{
+    flexDirection: "column",
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  },
+
   backgroundImage: {
     flex: 1,
-    resizeMode: 'cover',
+    // resizeMode: 'cover',
     justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
   },
   button: {
 
@@ -47,9 +61,9 @@ StyleSheet.create({
   card: {
     // width: '46%', // Adjust according to your grid layout
     // height: 150, // Adjust height as needed
-    margin: "2%",
+    // margin: "2%",
 
-    elevation: 4,
+    // elevation: 4,
   },
   checkbox: {
     height: '25%',

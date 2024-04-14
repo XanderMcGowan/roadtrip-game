@@ -4,11 +4,14 @@ import {
   View,
   SafeAreaView,
   Text,
+  ImageBackground
 } from "react-native";
+import { Button } from "react-native-paper";
 import { useFonts, Caveat_400Regular } from "@expo-google-fonts/caveat";
 import globalStyles from "../style/globalStyles";
 
-import { Button } from "react-native-paper";
+
+
 
 const HomeScreen = ({ navigation }) => {
 
@@ -27,9 +30,12 @@ const HomeScreen = ({ navigation }) => {
   let selectedNum = 4
   
   return (
-    <SafeAreaView style={[globalStyles.container, {flexDirection: "column"}]}>
-            <View style={{height: '10%'}}></View>
-      <Text style={[globalStyles.text, { margin: 25, fontSize: 48 }]}>
+    <SafeAreaView style={[globalStyles.containerHome]}>
+      <ImageBackground source={require('../images/home-bg.jpg')} style={[globalStyles.backgroundImage]}>
+
+
+            <View style={{height: '8%'}}></View>
+      <Text style={[globalStyles.text, { margin: 25, fontSize: 52}]}>
         Road Trip Game
       </Text>
 
@@ -70,6 +76,7 @@ const HomeScreen = ({ navigation }) => {
         </Button>
       </View>
       <View style={{height: '10%'}}></View>
+      </ImageBackground>
     </SafeAreaView>
   );
 };

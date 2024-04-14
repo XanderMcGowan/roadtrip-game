@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
 import { Card } from "react-native-paper";
 import { Audio } from "expo-av";
 import globalStyles from "../style/globalStyles";
@@ -23,13 +23,6 @@ const SoloScreen = ({ navigation, route }) => {
     }
     return false;
   }
-
-  // const styles = {
-  //   popup: {
-  //     backgroundColor: cardStyle ? "blue" : "red",
-  //   },
-  // };
-  console.log(cardStyle);
 
   async function playSound() {
     console.log("Loading Sound");
@@ -88,32 +81,45 @@ const SoloScreen = ({ navigation, route }) => {
   checkAllAndNavigate(checkboxes, navigation);
 
   return (
-    <View
-      style={[
-        globalStyles.container,
-        {
-          // backgroundColor: cardStyle ? "blue" : "red",
-        },
-      ]}
-    >
-      {checkboxes.map((checkbox) => (
-        <Card
-          onPress={() => handleCheckboxToggle(checkbox.id)}
-          key={checkbox.id}
-          status={checkbox.checked ? "checked" : "unchecked"}
+    <SafeAreaView style={{height: '100%'}}>
+      <View style={{
+        padding: '5%',
+        height:'100%',
+        flex: 1, 
+        justifyContent: "center", 
+        alignItems: "center",
+          // borderWidth: 5, // Border wi
+    // borderColor: 'blue', // Border color
+        }}>
+        <View
           style={[
-            globalStyles.card,
-            checkbox.checked && globalStyles.clickedCard,
-          {width: cardStyle ? "46%" : "50%"}]}
+            globalStyles.container,
+            {
+              // backgroundColor: cardStyle ? "blue" : "red",
+            },
+          ]}
         >
-          <Card.Content style={{ justifyContent: "center" }}>
-            <Text style={globalStyles.text}>
-              {randomArray[checkbox.id.split("_")[1]]}
-            </Text>
-          </Card.Content>
-        </Card>
-      ))}
-    </View>
+          {checkboxes.map((checkbox) => (
+            <Card
+              onPress={() => handleCheckboxToggle(checkbox.id)}
+              key={checkbox.id}
+              status={checkbox.checked ? "checked" : "unchecked"}
+              style={[
+                globalStyles.card,
+                checkbox.checked && globalStyles.clickedCard,
+                { width: cardStyle ? "46%" : "50%" },
+              ]}
+            >
+              <Card.Content style={{ justifyContent: "center" }}>
+                <Text style={globalStyles.text}>
+                  {randomArray[checkbox.id.split("_")[1]]}
+                </Text>
+              </Card.Content>
+            </Card>
+          ))}
+        </View>
+      </View>
+    </SafeAreaView>
   );
 };
 
