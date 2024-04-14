@@ -4,13 +4,13 @@ const globalStyles =
 
 StyleSheet.create({
   container: {
+    padding: '5%',
+    height:'100%',
     flex: 1,
-    width: '100%',
     justifyContent:'center',
-    // borderWidth: 2,
-    // borderColor: 'red',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
   backgroundImage: {
     flex: 1,
@@ -45,7 +45,8 @@ StyleSheet.create({
     fontSize: 24,
   },
   card: {
-    width: '60%',
+    // width: '46%', // Adjust according to your grid layout
+    // height: 150, // Adjust height as needed
     margin: "2%",
 
     elevation: 4,

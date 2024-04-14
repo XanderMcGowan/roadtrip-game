@@ -27,7 +27,7 @@ const HomeScreen = ({ navigation }) => {
   let selectedNum = 4
   
   return (
-    <SafeAreaView style={globalStyles.container}>
+    <SafeAreaView style={[globalStyles.container, {flexDirection: "column"}]}>
             <View style={{height: '10%'}}></View>
       <Text style={[globalStyles.text, { margin: 25, fontSize: 48 }]}>
         Road Trip Game
@@ -36,7 +36,7 @@ const HomeScreen = ({ navigation }) => {
       <View
         style={[
           globalStyles.container,
-          { justifyContent: "flex-end", alignItems: "center" },
+          { justifyContent: "flex-end", alignItems: "center", flexDirection: "column" },
         ]}
       >
         <Button

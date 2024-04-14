@@ -4,14 +4,32 @@ import { Card } from "react-native-paper";
 import { Audio } from "expo-av";
 import globalStyles from "../style/globalStyles";
 import searchItems from "../searchItems";
+import getRandomIndexes from "../functions/getRandomIndexes";
 
 const SoloScreen = ({ navigation, route }) => {
   let gameParams = route.params;
-  let newDiff = [];
+  let randomArr = getRandomIndexes(gameParams);
 
-  const [randomArray, setRandomArray] = useState(getRandomIndexes());
+  // console.log("this is out side")
+
+  const [randomArray, setRandomArray] = useState(randomArr);
+  const [cardStyle, setCardStyle] = useState(checkCardStyle());
   const [checkboxes, setCheckboxes] = useState(generateCheckboxes());
   const [sound, setSound] = useState();
+
+  function checkCardStyle() {
+    if (gameParams.selectedNum > 4) {
+      return true;
+    }
+    return false;
+  }
+
+  // const styles = {
+  //   popup: {
+  //     backgroundColor: cardStyle ? "blue" : "red",
+  //   },
+  // };
+  console.log(cardStyle);
 
   async function playSound() {
     console.log("Loading Sound");
@@ -33,43 +51,8 @@ const SoloScreen = ({ navigation, route }) => {
       : undefined;
   }, [sound]);
 
-  function getRandomIndexes() {
-    let size = Number(gameParams.selectedNum);
-    const indexes = [];
-    const randomArray = [];
-
-    if (gameParams.selectedDiff == "easy") {
-      newDiff = [...searchItems.easy];
-      console.log(newDiff);
-    } else if (gameParams.selectedDiff == "medium") {
-      newDiff = [...searchItems.easy, ...searchItems.medium];
-      console.log(newDiff);
-    } else {
-      newDiff = [
-        ...searchItems.easy,
-        ...searchItems.medium,
-        ...searchItems.hard,
-      ];
-      console.log(newDiff);
-    }
-
-
-    // Generate random indexes and add them to the array
-    while (indexes.length < size) {
-      const randomIndex = Math.floor(Math.random() *newDiff.length);
-      console.log(indexes)
-      if (!indexes.includes(randomIndex)) {
-        console.log("pushing")
-        indexes.push(randomIndex);
-        randomArray.push(newDiff[randomIndex]);
-      }
-    }
-
-    return randomArray;
-  }
-
   function generateCheckboxes() {
-    const numberOfCheckboxes = Number(gameParams.selectedNum);
+    const numberOfCheckboxes = gameParams.selectedNum;
     const checkboxesArray = Array.from(
       { length: numberOfCheckboxes },
       (_, index) => ({
@@ -105,7 +88,14 @@ const SoloScreen = ({ navigation, route }) => {
   checkAllAndNavigate(checkboxes, navigation);
 
   return (
-    <View style={[globalStyles.container]}>
+    <View
+      style={[
+        globalStyles.container,
+        {
+          // backgroundColor: cardStyle ? "blue" : "red",
+        },
+      ]}
+    >
       {checkboxes.map((checkbox) => (
         <Card
           onPress={() => handleCheckboxToggle(checkbox.id)}
@@ -114,7 +104,7 @@ const SoloScreen = ({ navigation, route }) => {
           style={[
             globalStyles.card,
             checkbox.checked && globalStyles.clickedCard,
-          ]}
+          {width: cardStyle ? "46%" : "50%"}]}
         >
           <Card.Content style={{ justifyContent: "center" }}>
             <Text style={globalStyles.text}>
