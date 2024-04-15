@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, SafeAreaView } from "react-native";
-import { Card } from "react-native-paper";
+import { Card, IconButton } from "react-native-paper";
 import { Audio } from "expo-av";
 import globalStyles from "../style/globalStyles";
 import searchItems from "../searchItems";
 import getRandomIndexes from "../functions/getRandomIndexes";
+
 
 const SoloScreen = ({ navigation, route }) => {
   let gameParams = route.params;
@@ -81,16 +82,18 @@ const SoloScreen = ({ navigation, route }) => {
   checkAllAndNavigate(checkboxes, navigation);
 
   return (
-    <SafeAreaView style={{height: '100%'}}>
-      <View style={{
-        padding: '5%',
-        height:'100%',
-        flex: 1, 
-        justifyContent: "center", 
-        alignItems: "center",
+    <SafeAreaView style={{ height: "100%" }}>
+      <View
+        style={{
+          padding: "5%",
+          height: "100%",
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
           // borderWidth: 5, // Border wi
-    // borderColor: 'blue', // Border color
-        }}>
+          // borderColor: 'blue', // Border color
+        }}
+      >
         <View
           style={[
             globalStyles.container,
@@ -118,6 +121,11 @@ const SoloScreen = ({ navigation, route }) => {
             </Card>
           ))}
         </View>
+      <IconButton
+        icon="home"
+        size={20}
+        onPress={() => navigation.navigate('Home')}
+      />
       </View>
     </SafeAreaView>
   );
