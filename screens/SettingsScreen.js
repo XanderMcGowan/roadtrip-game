@@ -105,7 +105,7 @@ const SettingScreen = ({ navigation }) => {
     if (selectedVersus == "versus") {
       navigation.navigate("Versus", { selectedDiff });
     } else {
-      navigation.navigate("Solo", {selectedDiff, selectedNum});
+      navigation.navigate("Play", {selectedDiff, selectedNum});
     }
   };
 

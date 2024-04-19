@@ -9,6 +9,7 @@ import getRandomIndexes from "../functions/getRandomIndexes";
 
 const SoloScreen = ({ navigation, route }) => {
   let gameParams = route.params;
+  console.log(gameParams)
   let randomArr = getRandomIndexes(gameParams);
 
   // console.log("this is out side")

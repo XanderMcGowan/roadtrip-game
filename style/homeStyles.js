@@ -32,11 +32,12 @@ StyleSheet.create({
       container: {
         // backgroundColor:'red',
         width: '100%',
-        paddingTop: '10%',
+        paddingTop: '80%',
+        marginBottom:'10%',
         flex: 1,
-        alignItems: 'center',
-        justifyContent: "flex-end",
-        flexDirection: "column",
+        // alignItems: 'center',
+        // justifyContent: "center",
+        // flexDirection: "column",
         // flexWrap: "wrap",
         // borderWidth: 5, // Border wi
         // borderColor: 'black', // Border color
@@ -55,7 +56,7 @@ StyleSheet.create({
         textAlign: 'center', 
         fontFamily: 'Caveat_400Regular',
         fontSize: 32,
-        color: '#333',
+        color: 'white',
       },
 
 })

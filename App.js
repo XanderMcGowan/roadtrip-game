@@ -29,9 +29,9 @@ const App = () => {
           <Stack.Screen name="Versus" component={VersusScreen} />
           <Stack.Screen name="Player1WinScreen" component={Player1WinScreen} />
           <Stack.Screen name="Player2WinScreen" component={Player2WinScreen} />
-          <Stack.Screen name="Solo" component={SoloScreen} />
+          <Stack.Screen name="Play" component={SoloScreen} />
           <Stack.Screen name="Win" component={WinScreen} />
-          <Stack.Screen name="HowToPlay" component={HowToPlayScreen} />
+          <Stack.Screen name="How To Play" component={HowToPlayScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
