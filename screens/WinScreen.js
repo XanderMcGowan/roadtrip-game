@@ -13,7 +13,8 @@ import LottieView from "lottie-react-native";
 import Confetti from "../assets/confetti2.json";
 import { Button } from "react-native-paper";
 
-const WinScreen = ({ navigation }) => {
+const WinScreen = ({ navigation, route }) => {
+  let gameParams = route.params;
 
   const [sound, setSound] = useState();
   const [backgroundImage, setBackgroundImage] = useState(null);
@@ -104,7 +105,7 @@ const WinScreen = ({ navigation }) => {
             }}
           >
             <Text style={[styles.text, { fontSize: 38 }]}>
-              You Won!!!
+              {gameParams.winTitle}
             </Text>
           </View>
         </View>

@@ -7,6 +7,7 @@ import { Text } from "react-native-paper";
 
 const VersusScreen = ({ navigation, route }) => {
   let selectedDiff = route.params;
+  let winTitle = "You Won!!!"
 
   const [checkboxes1, setCheckboxes1] = useState(generateCheckboxes());
   const [checkboxes2, setCheckboxes2] = useState(generateCheckboxes());
@@ -36,8 +37,9 @@ const VersusScreen = ({ navigation, route }) => {
   const allChecked1 = checkboxes1.every((checkbox) => checkbox.checked);
 
   if (allChecked1) {
+    winTitle = "Player 1 Wins!!"
     console.log("Player 1 wins");
-    navigation.navigate("Player1WinScreen"); // Replace 'DifferentScreen' with the actual screen name
+    navigation.navigate("Win", {winTitle}); // Replace 'DifferentScreen' with the actual screen name
   }
 
   const handleCheckboxToggle2 = (checkboxId) => {
@@ -53,7 +55,8 @@ const VersusScreen = ({ navigation, route }) => {
   const allChecked2 = checkboxes2.every((checkbox) => checkbox.checked);
 
   if (allChecked2) {
-    navigation.navigate("Player2WinScreen"); 
+    winTitle = "Player 2 Wins !!!"
+    navigation.navigate("Win", {winTitle}); 
   }
 
   return (

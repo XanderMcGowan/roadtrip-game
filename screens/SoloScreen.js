@@ -8,6 +8,7 @@ import getRandomIndexes from "../functions/getRandomIndexes";
 
 const SoloScreen = ({ navigation, route }) => {
   let gameParams = route.params;
+  let winTitle = "You Won!!!"
   console.log(gameParams);
   let randomArr = getRandomIndexes(gameParams);
 
@@ -94,7 +95,7 @@ const SoloScreen = ({ navigation, route }) => {
     if (allChecked) {
       setTimeout(() => {
         console.log("Timeout completed!");
-        navigation.navigate("Win");
+        navigation.navigate("Win", { winTitle});
       }, 60);
     }
   }
