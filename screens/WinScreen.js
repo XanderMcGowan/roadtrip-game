@@ -31,6 +31,7 @@ const WinScreen = ({ navigation }) => {
     // Generate random background image on component mount
     const randomIndex = Math.floor(Math.random() * backgroundImages.length);
     setBackgroundImage(backgroundImages[randomIndex]);
+    console.log(backgroundImage)
   }, []);
 
 
@@ -66,9 +67,9 @@ const WinScreen = ({ navigation }) => {
       >
         <View
           style={{
-            // flex: 1,
-            // justifyContent: 'center',
-            // alignItems: 'center',
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
             // backgroundColor:'white',
             height: "80%",
             zIndex: 1,
@@ -81,9 +82,41 @@ const WinScreen = ({ navigation }) => {
             autoPlay
             loop={true}
           />
-          <Text style={styles.text}>You Won!!!</Text>
+        <View
+          style={{
+            backgroundColor: "#E0E1DE",
+            height: "25%",
+            width: "60%",
+            borderWidth: 4, // Border width
+            borderColor: "#0c0f14", // Border color
+            borderRadius: 10,
+          }}
+        >
+          <View
+            style={{
+              margin: "1.5%",
+              backgroundColor: "#157264",
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 10,
+              padding: "1%",
+            }}
+          >
+            <Text style={[styles.text, { fontSize: 38 }]}>
+              You Won!!!
+            </Text>
+          </View>
         </View>
-        <SignButton dest={"Home"} style={{}}></SignButton>
+        </View>
+        <View
+        style={{
+          height:'15%'
+        }}
+        >
+
+        <SignButton dest={"Home"} ></SignButton>
+        </View>
       </ImageBackground>
     </View>
   );
@@ -112,9 +145,9 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   text: {
-    paddingTop: '95%',
+    // paddingTop: '95%',
     textAlign: "center",
-    // fontFamily: 'Caveat_400Regular',
+    fontFamily: 'Overpass_400Regular',
     fontSize: 50,
     color: "white",
   },

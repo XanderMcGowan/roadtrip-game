@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, SafeAreaView, ImageBackground } from "react-native";
+import { View, Text, SafeAreaView, ImageBackground, StyleSheet } from "react-native";
 import { Card, IconButton } from "react-native-paper";
 import { Audio } from "expo-av";
 import globalStyles from "../style/globalStyles";
@@ -104,33 +104,22 @@ const SoloScreen = ({ navigation, route }) => {
     <SafeAreaView style={{ height: "100%" }}>
       <ImageBackground
         source={backgroundImage}
-        style={{
-          flex: 1,
-          // resizeMode: 'cover',
-          justifyContent: "center",
-          width: "100%",
-          height: "100%",
-          alignItems: "center",
-          // zIndex:'-1'
-        }}
+        style={[styles.backgroundImage]}
       >
         <View
           style={{
-            padding: "5%",
+            paddingTop: "10%",
             height: "100%",
             flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
+            // justifyContent: "space-between",
+            // alignItems: "center",
             // borderWidth: 5, // Border wi
             // borderColor: 'blue', // Border color
           }}
         >
           <View
             style={[
-              globalStyles.container,
-              {
-                // backgroundColor: cardStyle ? "blue" : "red",
-              },
+              styles.container
             ]}
           >
             {checkboxes.map((checkbox) => (
@@ -139,27 +128,85 @@ const SoloScreen = ({ navigation, route }) => {
                 key={checkbox.id}
                 status={checkbox.checked ? "checked" : "unchecked"}
                 style={[
-                  globalStyles.card,
-                  checkbox.checked && globalStyles.clickedCard,
+                  styles.card,
+                  checkbox.checked && styles.clickedCard,
                   { width: cardStyle ? "46%" : "50%" },
                 ]}
               >
                   <Card.Content style={{ justifyContent: "center" }}>
-                    <Text style={globalStyles.text}>
+                    <Text style={styles.text}>
                       {randomArray[checkbox.id.split("_")[1]]}
                     </Text>
                   </Card.Content>
               </Card>
             ))}
           </View>
+          <View
+          style={{
+            height:'15%',
+            // backgroundColor: "white",
+
+          }}
+          >
+
 <SignButton
 dest={"Home"}>
 
 </SignButton>
+
+          </View>
         </View>
       </ImageBackground>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  backgroundImage: {
+    // flex: 1,
+    // resizeMode: 'cover',
+    // justifyContent: "center",
+    width: "100%",
+    height: "100%",
+    // alignItems: "center",
+    // zIndex:'-1'
+  },
+  container: {
+    // backgroundColor:'blue',
+    width: '100%',
+    paddingTop: '10%',
+    flex: 1,
+    justifyContent:'center',
+    alignItems: 'center',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginBottom: '25%',
+    // borderWidth: 5, // Border wi
+    // borderColor: 'black', // Border color
+  },
+  card: {
+    marginRight: '2%',
+    marginLeft: '2%',
+    marginTop: '5%',
+    backgroundColor: "#CA5940",
+    height: "20%",
+    width: "50%",
+    borderWidth: 4, // Border width
+    // borderColor: "#0c0f14", // Border color
+    borderColor: 'white',
+    borderRadius: 10,
+  },
+  clickedCard: {
+    opacity: 0.5, // Change opacity when clicked
+  },
+  text: {
+    paddingTop: '6%',
+    textAlign: "center",
+    fontFamily: 'Overpass_400Regular',
+    fontSize: 28,
+    color: "white",
+  },
+});
+
 
 export default SoloScreen;
