@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
     marginLeft:'8%',
     marginRight:'8%',
     color: "white",
-    fontSize: 42,
-    fontFamily: "Caveat_400Regular" 
+    fontSize: 32,
+    fontFamily: "Overpass_400Regular" 
   },
 });
 

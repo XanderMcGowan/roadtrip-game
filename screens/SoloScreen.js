@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, SafeAreaView } from "react-native";
+import { View, Text, SafeAreaView, ImageBackground } from "react-native";
 import { Card, IconButton } from "react-native-paper";
 import { Audio } from "expo-av";
 import globalStyles from "../style/globalStyles";
-import searchItems from "../searchItems";
+import SignButton from "../components/SignButton";
 import getRandomIndexes from "../functions/getRandomIndexes";
-
 
 const SoloScreen = ({ navigation, route }) => {
   let gameParams = route.params;
-  console.log(gameParams)
+  console.log(gameParams);
   let randomArr = getRandomIndexes(gameParams);
 
   // console.log("this is out side")
@@ -18,6 +17,25 @@ const SoloScreen = ({ navigation, route }) => {
   const [cardStyle, setCardStyle] = useState(checkCardStyle());
   const [checkboxes, setCheckboxes] = useState(generateCheckboxes());
   const [sound, setSound] = useState();
+  const [backgroundImage, setBackgroundImage] = useState(null);
+
+  const backgroundImages = [
+    require("../images/play-bg1.jpg"), // Replace with your image paths
+    require("../images/play-bg2.jpg"),
+    require("../images/play-bg3.jpg"),
+    require("../images/play-bg4.jpg"),
+    require("../images/play-bg5.jpg"),
+    require("../images/play-bg6.jpg"),
+    require("../images/play-bg7.jpg"),
+    require("../images/play-bg8.jpg"),
+    require("../images/play-bg9.jpg"),
+  ];
+
+  useEffect(() => {
+    // Generate random background image on component mount
+    const randomIndex = Math.floor(Math.random() * backgroundImages.length);
+    setBackgroundImage(backgroundImages[randomIndex]);
+  }, []);
 
   function checkCardStyle() {
     if (gameParams.selectedNum > 4) {
@@ -84,50 +102,62 @@ const SoloScreen = ({ navigation, route }) => {
 
   return (
     <SafeAreaView style={{ height: "100%" }}>
-      <View
+      <ImageBackground
+        source={backgroundImage}
         style={{
-          padding: "5%",
-          height: "100%",
           flex: 1,
+          // resizeMode: 'cover',
           justifyContent: "center",
+          width: "100%",
+          height: "100%",
           alignItems: "center",
-          // borderWidth: 5, // Border wi
-          // borderColor: 'blue', // Border color
+          // zIndex:'-1'
         }}
       >
         <View
-          style={[
-            globalStyles.container,
-            {
-              // backgroundColor: cardStyle ? "blue" : "red",
-            },
-          ]}
+          style={{
+            padding: "5%",
+            height: "100%",
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            // borderWidth: 5, // Border wi
+            // borderColor: 'blue', // Border color
+          }}
         >
-          {checkboxes.map((checkbox) => (
-            <Card
-              onPress={() => handleCheckboxToggle(checkbox.id)}
-              key={checkbox.id}
-              status={checkbox.checked ? "checked" : "unchecked"}
-              style={[
-                globalStyles.card,
-                checkbox.checked && globalStyles.clickedCard,
-                { width: cardStyle ? "46%" : "50%" },
-              ]}
-            >
-              <Card.Content style={{ justifyContent: "center" }}>
-                <Text style={globalStyles.text}>
-                  {randomArray[checkbox.id.split("_")[1]]}
-                </Text>
-              </Card.Content>
-            </Card>
-          ))}
+          <View
+            style={[
+              globalStyles.container,
+              {
+                // backgroundColor: cardStyle ? "blue" : "red",
+              },
+            ]}
+          >
+            {checkboxes.map((checkbox) => (
+              <Card
+                onPress={() => handleCheckboxToggle(checkbox.id)}
+                key={checkbox.id}
+                status={checkbox.checked ? "checked" : "unchecked"}
+                style={[
+                  globalStyles.card,
+                  checkbox.checked && globalStyles.clickedCard,
+                  { width: cardStyle ? "46%" : "50%" },
+                ]}
+              >
+                  <Card.Content style={{ justifyContent: "center" }}>
+                    <Text style={globalStyles.text}>
+                      {randomArray[checkbox.id.split("_")[1]]}
+                    </Text>
+                  </Card.Content>
+              </Card>
+            ))}
+          </View>
+<SignButton
+dest={"Home"}>
+
+</SignButton>
         </View>
-      <IconButton
-        icon="home"
-        size={20}
-        onPress={() => navigation.navigate('Home')}
-      />
-      </View>
+      </ImageBackground>
     </SafeAreaView>
   );
 };

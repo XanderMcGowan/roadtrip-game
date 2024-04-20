@@ -1,138 +1,257 @@
-import React, { useState } from "react";
-import { View, Text, SafeAreaView } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ImageBackground,
+  StyleSheet,
+  Pressable,
+} from "react-native";
+import ButtonRouteParams from "../components/ButtonRouteParams";
+import { Audio } from "expo-av";
 import { Button } from "react-native-paper";
 import DropDown from "react-native-paper-dropdown";
 
 import globalStyles from "../style/globalStyles";
 
-const DropdownMenu = () => {
-  const [selectedVersus, setSelectedVersus] = useState("solo");
+const SettingScreen = ({ navigation }) => {
+  const [selectedVersus, setSelectedVersus] = useState("Play");
   const [selectedDiff, setSelectedDiff] = useState("easy");
   const [selectedNum, setSelectedNum] = useState("4");
-  const [showDropDown, setShowDropDown] = useState(false);
-  const [showDropDown2, setShowDropDown2] = useState(false);
-  const [showDropDown3, setShowDropDown3] = useState(false);
-  const playTypeList = [
-    {
-      label: "Solo",
-      value: "solo",
-    },
-    {
-      label: "Versus",
-      value: "versus",
-    },
-  ];
+  const [sound, setSound] = useState();
 
-  const diffList = [
-    {
-      label: "Easy",
-      value: "easy",
-    },
-    {
-      label: "Medium",
-      value: "medium",
-    },
-    {
-      label: "Hard",
-      value: "hard",
-    },
-  ];
+  async function playSound() {
+    console.log("Loading Sound");
+    const { sound } = await Audio.Sound.createAsync(
+      require("../sounds/click2.mp3")
+    );
+    setSound(sound);
 
-  const numList = [
-    {
-      label: "2",
-      value: "2",
-    },
-    {
-      label: "4",
-      value: "4",
-    },
-    {
-      label: "6",
-      value: "6",
-    },
-  ];
+    console.log("Playing Sound");
+    await sound.playAsync();
+  }
 
-  return {
-    selectedVersus,
-    selectedDiff,
-    selectedNum,
-    render: (
-      <SafeAreaView>
-        <View style={{ marginBottom: "5%" }}>
-          <DropDown
-            label={"Play Type"}
-            mode={"flat"}
-            visible={showDropDown}
-            showDropDown={() => setShowDropDown(true)}
-            onDismiss={() => setShowDropDown(false)}
-            value={selectedVersus}
-            setValue={setSelectedVersus}
-            list={playTypeList}
-          />
-        </View>
-        <DropDown
-          style={{ marginBottom: "5%" }}
-          label={"Difficulty"}
-          mode={"flat"}
-          visible={showDropDown2}
-          showDropDown={() => setShowDropDown2(true)}
-          onDismiss={() => setShowDropDown2(false)}
-          value={selectedDiff}
-          setValue={setSelectedDiff}
-          list={diffList}
-        />
-                <DropDown
-          style={{ marginBottom: "5%" }}
-          label={"Number of Items"}
-          mode={"flat"}
-          visible={showDropDown3}
-          showDropDown={() => setShowDropDown3(true)}
-          onDismiss={() => setShowDropDown3(false)}
-          value={selectedNum}
-          setValue={setSelectedNum}
-          list={numList}
-        />
-      </SafeAreaView>
-    ),
-  };
-};
-
-const SettingScreen = ({ navigation }) => {
-  const { render, selectedVersus, selectedDiff, selectedNum } = DropdownMenu();
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log("Unloading Sound");
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
 
   const handlePageNav = () => {
     if (selectedVersus == "versus") {
       navigation.navigate("Versus", { selectedDiff });
     } else {
-      navigation.navigate("Play", {selectedDiff, selectedNum});
+      navigation.navigate("Play", { selectedDiff, selectedNum });
     }
+  };
+
+  const handleVersus = (option) => {
+    playSound();
+    setSelectedVersus(option);
+    console.log(selectedVersus);
+  };
+
+  const handleDiff = (option) => {
+    playSound();
+    setSelectedDiff(option);
+    console.log(selectedDiff);
+  };
+
+  const handleNum = (option) => {
+    playSound();
+    setSelectedNum(option);
+    console.log(selectedNum);
   };
 
   return (
     <SafeAreaView
       style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
     >
-      {render}
-      <Button
-        style={{ marginBottom: "5%" }}
-        mode="elevated"
-        uppercase="true"
-        labelStyle={{ fontSize: 18, fontFamily: "Caveat_400Regular" }}
-        onPress={() => handlePageNav()}
+      <ImageBackground
+        source={require("../images/settings-bg.jpg")}
+        style={{
+          flex: 1,
+          // resizeMode: 'cover',
+          justifyContent: "center",
+          width: "100%",
+          height: "100%",
+          alignItems: "center",
+          zIndex: -1,
+        }}
       >
-        Play
-      </Button>
-      <Button
-        mode="elevated"
-        uppercase="true"
-        labelStyle={{ fontSize: 18, fontFamily: "Caveat_400Regular" }}
-        onPress={() => navigation.navigate("Home")}
-      >
-        Home
-      </Button>
+        <View style={styles.main}>
+          <Text style={[styles.buttonText, {color: 'black', fontSize: 24, marginTop:"4%"}]}>VERSUS</Text>
+          <View style={styles.container}>
+            <Pressable
+              onPress={() => handleVersus("Play")}
+              style={[
+                styles.buttonBase,
+                selectedVersus === "Play" && styles.selected,
+              ]}
+            >
+              <View style={[styles.buttonTop]}>
+                <Text style={[styles.buttonText]}>Solo</Text>
+              </View>
+            </Pressable>
+            <Pressable
+              onPress={() => handleVersus("Versus")}
+              style={[
+                styles.buttonBase,
+                selectedVersus === "Versus" && styles.selected,
+              ]}
+            >
+              <View style={[styles.buttonTop, { backgroundColor: "#CA5940" }]}>
+                <Text style={[styles.buttonText]}>Versus</Text>
+              </View>
+            </Pressable>
+          </View>
+          <Text style={[styles.buttonText, {color: 'black', fontSize: 24,}]}>DIFFICULTY</Text>
+          <View style={styles.container}>
+            <Pressable
+              onPress={() => handleDiff("easy")}
+              style={[
+                styles.buttonBase,
+                selectedDiff === "easy" && styles.selected,
+              ]}
+            >
+              <View style={[styles.buttonTop]}>
+                <Text style={[styles.buttonText]}>Easy</Text>
+              </View>
+            </Pressable>
+            <Pressable
+              onPress={() => handleDiff("medium")}
+              style={[
+                styles.buttonBase,
+                selectedDiff === "medium" && styles.selected,
+              ]}
+            >
+              <View style={[styles.buttonTop, { backgroundColor: "#F9D45F" }]}>
+                <Text style={[styles.buttonText]}>Medium</Text>
+              </View>
+            </Pressable>
+            <Pressable
+              onPress={() => handleDiff("hard")}
+              style={[
+                styles.buttonBase,
+                selectedDiff === "hard" && styles.selected,
+              ]}
+            >
+              <View style={[styles.buttonTop, { backgroundColor: "#CA5940" }]}>
+                <Text style={[styles.buttonText]}>Hard</Text>
+              </View>
+            </Pressable>
+          </View>
+          <Text style={[styles.buttonText, {color: 'black', fontSize: 24,}]}>NUMBER OF ITEMS</Text>
+          <View style={styles.container}>
+            <Pressable
+              onPress={() => handleNum("2")}
+              style={[
+                styles.buttonBase,
+                selectedNum === "2" && styles.selected,
+              ]}
+            >
+              <View style={[styles.buttonTop]}>
+                <Text style={[styles.buttonText]}>2</Text>
+              </View>
+            </Pressable>
+            <Pressable
+              onPress={() => handleNum("4")}
+              style={[
+                styles.buttonBase,
+                selectedNum === "4" && styles.selected,
+              ]}
+            >
+              <View style={[styles.buttonTop, { backgroundColor: "#F9D45F" }]}>
+                <Text style={[styles.buttonText]}>4</Text>
+              </View>
+            </Pressable>
+            <Pressable
+              onPress={() => handleNum("6")}
+              style={[
+                styles.buttonBase,
+                selectedNum === "6" && styles.selected,
+              ]}
+            >
+              <View style={[styles.buttonTop, { backgroundColor: "#CA5940" }]}>
+                <Text style={[styles.buttonText]}>6</Text>
+              </View>
+            </Pressable>
+          </View>
+        </View>
+        <View
+        style={{
+          height:'15%'
+          
+        }}
+        >
+
+        <ButtonRouteParams
+          dest={selectedVersus}
+          selectedDiff={selectedDiff}
+          selectedNum={selectedNum}
+        ></ButtonRouteParams>
+        </View>
+      </ImageBackground>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  main: {
+    width:"95%",
+    marginTop: "25%",
+    marginBottom: "10%",
+    flex: 1,
+    backgroundColor: 'rgba(182, 216, 246, 0.5)',
+
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  container: {
+    margin: "10%",
+    height: "5%",
+    width: "85%",
+    // backgroundColor: "blue",
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button: {
+    height: "75%",
+  },
+  buttonBase: {
+    marginRight:"1.5%",
+    marginLeft:"1.5%",
+    backgroundColor: "#E0E1DE",
+    borderWidth: 4,
+    borderColor: "#0c0f14",
+    borderRadius: 10,
+    opacity: 0.5,
+  },
+  buttonTop: {
+    margin:'2%',
+    backgroundColor: "#157264",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    padding: "1.5%",
+  },
+  buttonText: {
+    marginLeft: "6%",
+    marginRight: "6%",
+    color: "white",
+    fontSize: 18,
+    fontFamily: "Overpass_400Regular",
+  },
+  selected: {
+    opacity: 1, 
+  },
+});
 
 export default SettingScreen;

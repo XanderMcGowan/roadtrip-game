@@ -6,7 +6,7 @@ const LogoScreen = ({ navigation }) => {
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
-      toValue: 0,
+      toValue: 0.1,
       duration: 4000, // Adjust the duration of the fade animation
       useNativeDriver: true,
     }).start(() => {
@@ -24,10 +24,19 @@ const LogoScreen = ({ navigation }) => {
         opacity: fadeAnim,
       }}
     >
-        <Text>This is your logo</Text>
-      <Image source={require('../images/logo.jpg')} style={{ width: 200, height: 200 }} />
+      <Image
+        source={require("../images/logo.png")}
+        style={{
+          flex: 1,
+          // resizeMode: 'cover',
+          justifyContent: "center",
+          width: "100%",
+          height: "100%",
+          alignItems: "center",
+          }}
+      />
     </Animated.View>
   );
 };
 
-export default LogoScreen
+export default LogoScreen;

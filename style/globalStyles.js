@@ -55,16 +55,17 @@ StyleSheet.create({
   buttonText: {
     paddingTop: "15%",
     textAlign:'center',
-    fontFamily: 'Caveat_400Regular',
+    fontFamily: 'Overpass_400Regular',
     color: "black",
     fontSize: 24,
   },
   card: {
-    // width: '46%', // Adjust according to your grid layout
-    // height: 150, // Adjust height as needed
-    // margin: "2%",
-
-    // elevation: 4,
+    backgroundColor: "#CA5940",
+    // height: "15%",
+    // width: "60%",
+    borderWidth: 4, // Border width
+    borderColor: "#0c0f14", // Border color
+    borderRadius: 10,
   },
   checkbox: {
     height: '25%',
@@ -99,15 +100,15 @@ StyleSheet.create({
     borderWidth: 1,
     borderRadius: 1.75,
     textAlign:'center',
-    fontFamily: 'Caveat_400Regular',
+    fontFamily: 'Overpass_400Regular',
     fontSize: 24,
     marginBottom:'1.5%+'
   },
   text: {
     textAlign: 'center', 
-    fontFamily: 'Caveat_400Regular',
+    fontFamily: 'Overpass_400Regular',
     fontSize: 32,
-    color: '#333',
+    color: 'white',
   },
 });
 

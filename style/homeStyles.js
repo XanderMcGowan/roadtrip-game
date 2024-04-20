@@ -26,7 +26,7 @@ StyleSheet.create({
 
       buttonLabelStyle: {
         fontSize: 18, 
-        fontFamily: "Caveat_400Regular" 
+        fontFamily: "Overpass_400Regular" 
       },
 
       container: {
@@ -54,7 +54,7 @@ StyleSheet.create({
 
       text: {
         textAlign: 'center', 
-        fontFamily: 'Caveat_400Regular',
+        fontFamily: 'Overpass_400Regular',
         fontSize: 32,
         color: 'white',
       },

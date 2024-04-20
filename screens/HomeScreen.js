@@ -6,22 +6,20 @@ import {
   ImageBackground,
   Pressable,
 } from "react-native";
-import { useFonts, Caveat_400Regular } from "@expo-google-fonts/caveat";
+import { useFonts, Overpass_400Regular } from "@expo-google-fonts/overpass";
 import homeStyles from "../style/homeStyles";
 import SignButton from "../components/SignButton.js";
 import ButtonRouteParams from "../components/ButtonRouteParams.js";
 
 const HomeScreen = ({ navigation }) => {
   let [fontsLoaded] = useFonts({
-    Caveat_400Regular,
+    Overpass_400Regular,
   });
 
   if (!fontsLoaded) {
     return null;
   }
 
-  let selectedDiff = "medium";
-  let selectedNum = 4;
 
   return (
     <SafeAreaView style={[homeStyles.containerHome]}>

@@ -11,6 +11,7 @@
   "dependencies": {
     "@dotlottie/react-player": "^1.6.18",
     "@expo-google-fonts/caveat": "^0.2.3",
+    "@expo-google-fonts/overpass": "^0.2.3",
     "@expo/metro-runtime": "~3.1.1",
     "@lottiefiles/react-lottie-player": "^3.5.3",
     "@react-native-community/checkbox": "^0.5.17",

@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import { View, Text, Pressable, StyleSheet, Animated } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Audio } from "expo-av";
+
+
 const ButtonRouteParams = (props) => {
     const [sound, setSound] = useState();
   let selectedDiff = props.selectedDiff
@@ -100,8 +102,8 @@ const styles = StyleSheet.create({
     marginLeft:'8%',
     marginRight:'8%',
     color: "white",
-    fontSize: 42,
-    fontFamily: "Caveat_400Regular" 
+    fontSize: 32,
+    fontFamily: "Overpass_400Regular" 
   },
 });
 
