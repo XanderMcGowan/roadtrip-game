@@ -10,7 +10,7 @@ import {
 import ButtonRouteParams from "../components/ButtonRouteParams";
 import { Audio } from "expo-av";
 
-const SettingScreen = ({ navigation }) => {
+const SettingScreen = () => {
   const [selectedVersus, setSelectedVersus] = useState("Play");
   const [selectedDiff, setSelectedDiff] = useState("easy");
   const [selectedNum, setSelectedNum] = useState("4");
@@ -18,20 +18,17 @@ const SettingScreen = ({ navigation }) => {
   const [sound, setSound] = useState();
 
   async function playSound() {
-    console.log("Loading Sound");
     const { sound } = await Audio.Sound.createAsync(
       require("../sounds/click2.mp3")
     );
     setSound(sound);
 
-    console.log("Playing Sound");
     await sound.playAsync();
   }
 
   useEffect(() => {
     return sound
       ? () => {
-          console.log("Unloading Sound");
           sound.unloadAsync();
         }
       : undefined;
@@ -40,26 +37,23 @@ const SettingScreen = ({ navigation }) => {
   const handleVersus = (option) => {
     playSound();
     if (option === "Versus") {
-      setSelectedNum('4')
+      setSelectedNum("4");
       setElementVisible(false);
     } else {
       setElementVisible(true);
     }
     setSelectedVersus(option);
-    console.log(selectedVersus);
   };
 
   const handleDiff = (option) => {
     playSound();
     setSelectedDiff(option);
 
-    console.log(selectedDiff);
   };
 
   const handleNum = (option) => {
     playSound();
     setSelectedNum(option);
-    console.log(selectedNum);
   };
 
   return (
@@ -70,7 +64,6 @@ const SettingScreen = ({ navigation }) => {
         source={require("../images/settings-bg.jpg")}
         style={{
           flex: 1,
-          // resizeMode: 'cover',
           justifyContent: "center",
           width: "100%",
           height: "100%",
@@ -204,8 +197,7 @@ const SettingScreen = ({ navigation }) => {
                 <View
                   style={[styles.buttonTop, { backgroundColor: "#D7573A" }]}
                 >
-
-                 <Text style={[styles.buttonText]}>8</Text>
+                  <Text style={[styles.buttonText]}>8</Text>
                 </View>
               </Pressable>
             ) : null}
@@ -243,7 +235,6 @@ const styles = StyleSheet.create({
     margin: "10%",
     height: "5%",
     width: "85%",
-    // backgroundColor: "blue",
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",

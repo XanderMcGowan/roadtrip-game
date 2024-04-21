@@ -4,14 +4,13 @@ import {
   SafeAreaView,
   Text,
   ImageBackground,
-  Pressable,
 } from "react-native";
 import { useFonts, Overpass_400Regular } from "@expo-google-fonts/overpass";
 import homeStyles from "../style/homeStyles";
 import SignButton from "../components/SignButton.js";
 import ButtonRouteParams from "../components/ButtonRouteParams.js";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
   let [fontsLoaded] = useFonts({
     Overpass_400Regular,
   });
@@ -33,8 +32,8 @@ const HomeScreen = ({ navigation }) => {
             backgroundColor: "#E0E1DE",
             height: "15%",
             width: "60%",
-            borderWidth: 4, // Border width
-            borderColor: "#0c0f14", // Border color
+            borderWidth: 4, 
+            borderColor: "#0c0f14", 
             borderRadius: 10,
           }}
         >

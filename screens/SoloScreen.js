@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, SafeAreaView, ImageBackground, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ImageBackground,
+  StyleSheet,
+} from "react-native";
 import { Card } from "react-native-paper";
 import { Audio } from "expo-av";
 import SignButton from "../components/SignButton";
@@ -7,7 +13,7 @@ import getRandomIndexes from "../functions/getRandomIndexes";
 
 const SoloScreen = ({ navigation, route }) => {
   let gameParams = route.params;
-  let winTitle = "You Won!!!"
+  let winTitle = "You Won!!!";
   console.log(gameParams);
   let randomArr = getRandomIndexes(gameParams);
 
@@ -18,7 +24,7 @@ const SoloScreen = ({ navigation, route }) => {
   const [backgroundImage, setBackgroundImage] = useState(null);
 
   const backgroundImages = [
-    require("../images/play-bg1.jpg"), // Replace with your image paths
+    require("../images/play-bg1.jpg"),
     require("../images/play-bg2.jpg"),
     require("../images/play-bg3.jpg"),
     require("../images/play-bg4.jpg"),
@@ -30,7 +36,6 @@ const SoloScreen = ({ navigation, route }) => {
   ];
 
   useEffect(() => {
-    // Generate random background image on component mount
     const randomIndex = Math.floor(Math.random() * backgroundImages.length);
     setBackgroundImage(backgroundImages[randomIndex]);
   }, []);
@@ -92,7 +97,7 @@ const SoloScreen = ({ navigation, route }) => {
     if (allChecked) {
       setTimeout(() => {
         console.log("Timeout completed!");
-        navigation.navigate("Win", { winTitle});
+        navigation.navigate("Win", { winTitle });
       }, 60);
     }
   }
@@ -109,17 +114,9 @@ const SoloScreen = ({ navigation, route }) => {
             paddingTop: "10%",
             height: "100%",
             flex: 1,
-            // justifyContent: "space-between",
-            // alignItems: "center",
-            // borderWidth: 5, // Border wi
-            // borderColor: 'blue', // Border color
           }}
         >
-          <View
-            style={[
-              styles.container
-            ]}
-          >
+          <View style={[styles.container]}>
             {checkboxes.map((checkbox) => (
               <Card
                 onPress={() => handleCheckboxToggle(checkbox.id)}
@@ -131,27 +128,20 @@ const SoloScreen = ({ navigation, route }) => {
                   { width: cardStyle ? "46%" : "50%" },
                 ]}
               >
-                  <Card.Content style={{ justifyContent: "center" }}>
-                    <Text style={styles.text}>
-                      {randomArray[checkbox.id.split("_")[1]]}
-                    </Text>
-                  </Card.Content>
+                <Card.Content style={{ justifyContent: "center" }}>
+                  <Text style={styles.text}>
+                    {randomArray[checkbox.id.split("_")[1]]}
+                  </Text>
+                </Card.Content>
               </Card>
             ))}
           </View>
           <View
-          style={{
-            height:'15%',
-            // backgroundColor: "white",
-
-          }}
+            style={{
+              height: "15%",
+            }}
           >
-
-<SignButton
-dest={"Home"}>
-
-</SignButton>
-
+            <SignButton dest={"Home"}></SignButton>
           </View>
         </View>
       </ImageBackground>
@@ -161,50 +151,40 @@ dest={"Home"}>
 
 const styles = StyleSheet.create({
   backgroundImage: {
-    // flex: 1,
-    // resizeMode: 'cover',
-    // justifyContent: "center",
     width: "100%",
     height: "100%",
-    // alignItems: "center",
-    // zIndex:'-1'
   },
   container: {
-    // backgroundColor:'blue',
-    width: '100%',
-    paddingTop: '10%',
+    width: "100%",
+    paddingTop: "10%",
     flex: 1,
-    justifyContent:'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     flexDirection: "row",
     flexWrap: "wrap",
-    marginBottom: '25%',
-    // borderWidth: 5, // Border wi
-    // borderColor: 'black', // Border color
+    marginBottom: "25%",
   },
   card: {
-    marginRight: '2%',
-    marginLeft: '2%',
-    marginTop: '5%',
+    marginRight: "2%",
+    marginLeft: "2%",
+    marginTop: "5%",
     backgroundColor: "#CA5940",
     height: "20%",
     width: "50%",
-    borderWidth: 4, // Border width
-    // borderColor: "#0c0f14", // Border color
-    borderColor: 'white',
+    borderWidth: 4,
+    borderColor: "white",
     borderRadius: 10,
   },
   clickedCard: {
-    opacity: 0.5, // Change opacity when clicked
+    opacity: 0.5,
   },
   text: {
-    paddingTop: '6%',
+    paddingTop: "6%",
     textAlign: "center",
-    fontFamily: 'Overpass_400Regular',
+    fontFamily: "Overpass_400Regular",
     fontSize: 28,
     color: "white",
   },
 });
-
 
 export default SoloScreen;

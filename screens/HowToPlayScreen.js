@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, ImageBackground } from 'react-native';
-import globalStyles from '../style/globalStyles';
-import { Button } from 'react-native-paper';
 import SignButton from '../components/SignButton';
 
-const HowToPlayScreen = ({ navigation }) => {
+const HowToPlayScreen = () => {
   
   return (
 
@@ -12,7 +10,6 @@ const HowToPlayScreen = ({ navigation }) => {
         source={require('../images/howto-bg.jpg')}
         style={{
           flex: 1,
-          // resizeMode: 'cover',
           justifyContent: "center",
           width: "100%",
           height: "100%",

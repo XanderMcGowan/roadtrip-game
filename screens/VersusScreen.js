@@ -24,7 +24,7 @@ const VersusScreen = ({ navigation, route }) => {
   const [backgroundImage, setBackgroundImage] = useState(null);
 
   const backgroundImages = [
-    require("../images/play-bg1.jpg"), // Replace with your image paths
+    require("../images/play-bg1.jpg"),
     require("../images/play-bg2.jpg"),
     require("../images/play-bg3.jpg"),
     require("../images/play-bg4.jpg"),
@@ -36,7 +36,6 @@ const VersusScreen = ({ navigation, route }) => {
   ];
 
   useEffect(() => {
-    // Generate random background image on component mount
     const randomIndex = Math.floor(Math.random() * backgroundImages.length);
     setBackgroundImage(backgroundImages[randomIndex]);
   }, []);
@@ -96,7 +95,6 @@ const VersusScreen = ({ navigation, route }) => {
     );
   };
 
-  
   const handleCheckboxToggle2 = (checkboxId) => {
     playSound();
     console.log(checkboxId);
@@ -114,7 +112,7 @@ const VersusScreen = ({ navigation, route }) => {
 
     if (allChecked) {
       setTimeout(() => {
-        winTitle = 'Player 1 Wins!'
+        winTitle = "Player 1 Wins!";
         navigation.navigate("Win", { winTitle });
       }, 60);
     }
@@ -126,7 +124,7 @@ const VersusScreen = ({ navigation, route }) => {
 
     if (allChecked) {
       setTimeout(() => {
-          winTitle = 'Player 2 Wins!'
+        winTitle = "Player 2 Wins!";
         navigation.navigate("Win", { winTitle });
       }, 60);
     }
@@ -144,10 +142,6 @@ const VersusScreen = ({ navigation, route }) => {
             paddingTop: "10%",
             height: "100%",
             flex: 1,
-            // justifyContent: "space-between",
-            // alignItems: "center",
-            // borderWidth: 5, // Border wi
-            // borderColor: 'blue', // Border color
           }}
         >
           <Text style={[styles.text, { fontSize: 42 }]}>Player 1</Text>
@@ -187,7 +181,6 @@ const VersusScreen = ({ navigation, route }) => {
           <View
             style={{
               height: "15%",
-              // backgroundColor: "white",
             }}
           >
             <SignButton dest={"Home"}></SignButton>
@@ -200,16 +193,10 @@ const VersusScreen = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   backgroundImage: {
-    // flex: 1,
-    // resizeMode: 'cover',
-    // justifyContent: "center",
     width: "100%",
     height: "100%",
-    // alignItems: "center",
-    // zIndex:'-1'
   },
   container: {
-    // backgroundColor:'blue',
     width: "100%",
     paddingTop: "10%",
     flex: 1,
@@ -217,9 +204,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     flexWrap: "wrap",
-    // marginBottom: "25%",
-    // borderWidth: 5, // Border wi
-    // borderColor: 'black', // Border color
   },
   card: {
     marginRight: "2%",
@@ -228,16 +212,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#CA5940",
     height: "35%",
     width: "46%",
-    borderWidth: 4, // Border width
-    // borderColor: "#0c0f14", // Border color
+    borderWidth: 4,
     borderColor: "white",
     borderRadius: 10,
   },
   clickedCard: {
-    opacity: 0.5, // Change opacity when clicked
+    opacity: 0.5,
   },
   text: {
-    // paddingTop: "6%",
     textAlign: "center",
     fontFamily: "Overpass_400Regular",
     fontSize: 28,

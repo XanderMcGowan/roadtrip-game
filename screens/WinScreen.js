@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  ImageBackground,
-  SafeAreaView,
-  StyleSheet,
-} from "react-native";
+import { View, Text, ImageBackground, StyleSheet } from "react-native";
 import { Audio } from "expo-av";
 import SignButton from "../components/SignButton";
 
 import LottieView from "lottie-react-native";
 import Confetti from "../assets/confetti2.json";
-import { Button } from "react-native-paper";
 
 const WinScreen = ({ navigation, route }) => {
   let gameParams = route.params;
@@ -20,24 +13,19 @@ const WinScreen = ({ navigation, route }) => {
   const [backgroundImage, setBackgroundImage] = useState(null);
 
   const backgroundImages = [
-    require('../images/win-bg1.jpg'), // Replace with your image paths
-    require('../images/win-bg2.jpg'),
-    require('../images/win-bg3.jpg'),
-    require('../images/win-bg4.jpg'),
-    require('../images/win-bg5.jpg'),
-    require('../images/win-bg6.jpg')
+    require("../images/win-bg1.jpg"),
+    require("../images/win-bg2.jpg"),
+    require("../images/win-bg3.jpg"),
+    require("../images/win-bg4.jpg"),
+    require("../images/win-bg5.jpg"),
+    require("../images/win-bg6.jpg"),
   ];
 
   useEffect(() => {
-    // Generate random background image on component mount
     const randomIndex = Math.floor(Math.random() * backgroundImages.length);
     setBackgroundImage(backgroundImages[randomIndex]);
-    console.log(backgroundImage)
+    console.log(backgroundImage);
   }, []);
-
-
-
-
 
   async function playSound() {
     console.log("Loading Sound");
@@ -69,9 +57,8 @@ const WinScreen = ({ navigation, route }) => {
         <View
           style={{
             flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            // backgroundColor:'white',
+            justifyContent: "center",
+            alignItems: "center",
             height: "80%",
             zIndex: 1,
           }}
@@ -83,40 +70,39 @@ const WinScreen = ({ navigation, route }) => {
             autoPlay
             loop={true}
           />
-        <View
-          style={{
-            backgroundColor: "#E0E1DE",
-            height: "25%",
-            width: "60%",
-            borderWidth: 4, // Border width
-            borderColor: "#0c0f14", // Border color
-            borderRadius: 10,
-          }}
-        >
           <View
             style={{
-              margin: "1.5%",
-              backgroundColor: "#157264",
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
+              backgroundColor: "#E0E1DE",
+              height: "25%",
+              width: "60%",
+              borderWidth: 4,
+              borderColor: "#0c0f14",
               borderRadius: 10,
-              padding: "1%",
             }}
           >
-            <Text style={[styles.text, { fontSize: 38 }]}>
-              {gameParams.winTitle}
-            </Text>
+            <View
+              style={{
+                margin: "1.5%",
+                backgroundColor: "#157264",
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: 10,
+                padding: "1%",
+              }}
+            >
+              <Text style={[styles.text, { fontSize: 38 }]}>
+                {gameParams.winTitle}
+              </Text>
+            </View>
           </View>
         </View>
-        </View>
         <View
-        style={{
-          height:'15%'
-        }}
+          style={{
+            height: "15%",
+          }}
         >
-
-        <SignButton dest={"Home"} ></SignButton>
+          <SignButton dest={"Home"}></SignButton>
         </View>
       </ImageBackground>
     </View>
@@ -126,7 +112,6 @@ const WinScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
-    // resizeMode: 'cover',
     width: "100%",
     height: "100%",
     zIndex: 1,
@@ -146,9 +131,8 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   text: {
-    // paddingTop: '95%',
     textAlign: "center",
-    fontFamily: 'Overpass_400Regular',
+    fontFamily: "Overpass_400Regular",
     fontSize: 50,
     color: "white",
   },
