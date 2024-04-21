@@ -34,7 +34,7 @@ const HowToPlayScreen = () => {
               alignItems: 'center',
               textAlign: 'center', 
               fontFamily: 'Overpass_400Regular',
-              fontSize: 32,
+              fontSize: 24,
               color: 'white',
             }}
             > SOLO:

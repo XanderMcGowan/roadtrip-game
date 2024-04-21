@@ -75,7 +75,7 @@ const SettingScreen = () => {
           <Text
             style={[
               styles.buttonText,
-              { color: "black", fontSize: 24, marginTop: "4%" },
+              { color: "white", fontSize: 24, marginTop: "4%" },
             ]}
           >
             VERSUS
@@ -104,7 +104,7 @@ const SettingScreen = () => {
               </View>
             </Pressable>
           </View>
-          <Text style={[styles.buttonText, { color: "black", fontSize: 24 }]}>
+          <Text style={[styles.buttonText, { color: "white", fontSize: 24 }]}>
             DIFFICULTY
           </Text>
           <View style={styles.container}>
@@ -142,7 +142,7 @@ const SettingScreen = () => {
               </View>
             </Pressable>
           </View>
-          <Text style={[styles.buttonText, { color: "black", fontSize: 24 }]}>
+          <Text style={[styles.buttonText, { color: "white", fontSize: 24 }]}>
             NUMBER OF ITEMS
           </Text>
           <View style={styles.container}>
@@ -225,14 +225,15 @@ const styles = StyleSheet.create({
     marginTop: "25%",
     marginBottom: "10%",
     flex: 1,
-    backgroundColor: "rgba(182, 216, 246, 0.5)",
+    // backgroundColor: "rgba(182, 216, 246, 0.5)",
 
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
   },
   container: {
-    margin: "10%",
+    // backgroundColor:"white",
+    margin: "5%",
     height: "5%",
     width: "85%",
     flex: 1,
@@ -241,7 +242,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   button: {
-    height: "75%",
+    height: "60%",
   },
   buttonBase: {
     marginRight: "1.5%",
@@ -262,10 +263,10 @@ const styles = StyleSheet.create({
     padding: "1.5%",
   },
   buttonText: {
-    marginLeft: "6%",
-    marginRight: "6%",
+    marginLeft: "4%",
+    marginRight: "4%",
     color: "white",
-    fontSize: 18,
+    fontSize: 20,
     fontFamily: "Overpass_400Regular",
   },
   selected: {

@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     marginLeft: "2%",
     marginTop: "5%",
     backgroundColor: "#CA5940",
-    height: "35%",
+    height: "40%",
     width: "46%",
     borderWidth: 4,
     borderColor: "white",

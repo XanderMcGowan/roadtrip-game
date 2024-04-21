@@ -30,7 +30,7 @@ const LogoScreen = ({ navigation }) => {
           flex: 1,
           justifyContent: "center",
           width: "95%",
-          height: "90%",
+          height: "50%",
           alignItems: "center",
           }}
       />
