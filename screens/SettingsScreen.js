@@ -9,15 +9,12 @@ import {
 } from "react-native";
 import ButtonRouteParams from "../components/ButtonRouteParams";
 import { Audio } from "expo-av";
-import { Button } from "react-native-paper";
-import DropDown from "react-native-paper-dropdown";
-
-import globalStyles from "../style/globalStyles";
 
 const SettingScreen = ({ navigation }) => {
   const [selectedVersus, setSelectedVersus] = useState("Play");
   const [selectedDiff, setSelectedDiff] = useState("easy");
   const [selectedNum, setSelectedNum] = useState("4");
+  const [elementVisible, setElementVisible] = useState(true);
   const [sound, setSound] = useState();
 
   async function playSound() {
@@ -40,16 +37,14 @@ const SettingScreen = ({ navigation }) => {
       : undefined;
   }, [sound]);
 
-  const handlePageNav = () => {
-    if (selectedVersus == "versus") {
-      navigation.navigate("Versus", { selectedDiff });
-    } else {
-      navigation.navigate("Play", { selectedDiff, selectedNum });
-    }
-  };
-
   const handleVersus = (option) => {
     playSound();
+    if (option === "Versus") {
+      setSelectedNum('4')
+      setElementVisible(false);
+    } else {
+      setElementVisible(true);
+    }
     setSelectedVersus(option);
     console.log(selectedVersus);
   };
@@ -57,6 +52,7 @@ const SettingScreen = ({ navigation }) => {
   const handleDiff = (option) => {
     playSound();
     setSelectedDiff(option);
+
     console.log(selectedDiff);
   };
 
@@ -83,7 +79,14 @@ const SettingScreen = ({ navigation }) => {
         }}
       >
         <View style={styles.main}>
-          <Text style={[styles.buttonText, {color: 'black', fontSize: 24, marginTop:"4%"}]}>VERSUS</Text>
+          <Text
+            style={[
+              styles.buttonText,
+              { color: "black", fontSize: 24, marginTop: "4%" },
+            ]}
+          >
+            VERSUS
+          </Text>
           <View style={styles.container}>
             <Pressable
               onPress={() => handleVersus("Play")}
@@ -108,7 +111,9 @@ const SettingScreen = ({ navigation }) => {
               </View>
             </Pressable>
           </View>
-          <Text style={[styles.buttonText, {color: 'black', fontSize: 24,}]}>DIFFICULTY</Text>
+          <Text style={[styles.buttonText, { color: "black", fontSize: 24 }]}>
+            DIFFICULTY
+          </Text>
           <View style={styles.container}>
             <Pressable
               onPress={() => handleDiff("easy")}
@@ -144,7 +149,9 @@ const SettingScreen = ({ navigation }) => {
               </View>
             </Pressable>
           </View>
-          <Text style={[styles.buttonText, {color: 'black', fontSize: 24,}]}>NUMBER OF ITEMS</Text>
+          <Text style={[styles.buttonText, { color: "black", fontSize: 24 }]}>
+            NUMBER OF ITEMS
+          </Text>
           <View style={styles.container}>
             <Pressable
               onPress={() => handleNum("2")}
@@ -157,6 +164,7 @@ const SettingScreen = ({ navigation }) => {
                 <Text style={[styles.buttonText]}>2</Text>
               </View>
             </Pressable>
+
             <Pressable
               onPress={() => handleNum("4")}
               style={[
@@ -168,31 +176,51 @@ const SettingScreen = ({ navigation }) => {
                 <Text style={[styles.buttonText]}>4</Text>
               </View>
             </Pressable>
-            <Pressable
-              onPress={() => handleNum("6")}
-              style={[
-                styles.buttonBase,
-                selectedNum === "6" && styles.selected,
-              ]}
-            >
-              <View style={[styles.buttonTop, { backgroundColor: "#CA5940" }]}>
-                <Text style={[styles.buttonText]}>6</Text>
-              </View>
-            </Pressable>
+
+            {elementVisible ? (
+              <Pressable
+                onPress={() => handleNum("6")}
+                style={[
+                  styles.buttonBase,
+                  selectedNum === "6" && styles.selected,
+                ]}
+              >
+                <View
+                  style={[styles.buttonTop, { backgroundColor: "#C96C40" }]}
+                >
+                  <Text style={[styles.buttonText]}>6</Text>
+                </View>
+              </Pressable>
+            ) : null}
+
+            {elementVisible ? (
+              <Pressable
+                onPress={() => handleNum("8")}
+                style={[
+                  styles.buttonBase,
+                  selectedNum === "8" && styles.selected,
+                ]}
+              >
+                <View
+                  style={[styles.buttonTop, { backgroundColor: "#D7573A" }]}
+                >
+
+                 <Text style={[styles.buttonText]}>8</Text>
+                </View>
+              </Pressable>
+            ) : null}
           </View>
         </View>
         <View
-        style={{
-          height:'15%'
-          
-        }}
+          style={{
+            height: "15%",
+          }}
         >
-
-        <ButtonRouteParams
-          dest={selectedVersus}
-          selectedDiff={selectedDiff}
-          selectedNum={selectedNum}
-        ></ButtonRouteParams>
+          <ButtonRouteParams
+            dest={selectedVersus}
+            selectedDiff={selectedDiff}
+            selectedNum={selectedNum}
+          ></ButtonRouteParams>
         </View>
       </ImageBackground>
     </SafeAreaView>
@@ -201,11 +229,11 @@ const SettingScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   main: {
-    width:"95%",
+    width: "95%",
     marginTop: "25%",
     marginBottom: "10%",
     flex: 1,
-    backgroundColor: 'rgba(182, 216, 246, 0.5)',
+    backgroundColor: "rgba(182, 216, 246, 0.5)",
 
     borderRadius: 10,
     justifyContent: "center",
@@ -225,8 +253,8 @@ const styles = StyleSheet.create({
     height: "75%",
   },
   buttonBase: {
-    marginRight:"1.5%",
-    marginLeft:"1.5%",
+    marginRight: "1.5%",
+    marginLeft: "1.5%",
     backgroundColor: "#E0E1DE",
     borderWidth: 4,
     borderColor: "#0c0f14",
@@ -234,7 +262,7 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   buttonTop: {
-    margin:'2%',
+    margin: "2%",
     backgroundColor: "#157264",
     flex: 1,
     justifyContent: "center",
@@ -250,7 +278,7 @@ const styles = StyleSheet.create({
     fontFamily: "Overpass_400Regular",
   },
   selected: {
-    opacity: 1, 
+    opacity: 1,
   },
 });
 

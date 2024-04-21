@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, SafeAreaView, ImageBackground, StyleSheet } from "react-native";
-import { Card, IconButton } from "react-native-paper";
+import { Card } from "react-native-paper";
 import { Audio } from "expo-av";
-import globalStyles from "../style/globalStyles";
 import SignButton from "../components/SignButton";
 import getRandomIndexes from "../functions/getRandomIndexes";
 
@@ -11,8 +10,6 @@ const SoloScreen = ({ navigation, route }) => {
   let winTitle = "You Won!!!"
   console.log(gameParams);
   let randomArr = getRandomIndexes(gameParams);
-
-  // console.log("this is out side")
 
   const [randomArray, setRandomArray] = useState(randomArr);
   const [cardStyle, setCardStyle] = useState(checkCardStyle());

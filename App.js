@@ -27,8 +27,8 @@ const App = () => {
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Settings" component={SettingScreen} />
           <Stack.Screen name="Versus" component={VersusScreen} />
-          <Stack.Screen name="Player1WinScreen" component={Player1WinScreen} />
-          <Stack.Screen name="Player2WinScreen" component={Player2WinScreen} />
+          {/* <Stack.Screen name="Player1WinScreen" component={Player1WinScreen} />
+          <Stack.Screen name="Player2WinScreen" component={Player2WinScreen} /> */}
           <Stack.Screen name="Play" component={SoloScreen} />
           <Stack.Screen name="Win" component={WinScreen} />
           <Stack.Screen name="How To Play" component={HowToPlayScreen} />
